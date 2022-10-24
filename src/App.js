@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 
-import Row from "react-bootstrap/Row";
 import {
     BrowserRouter as Router,
     Routes,
@@ -9,22 +7,27 @@ import {
 } from "react-router-dom";
 
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
+import Home from "./components/Home/Home";
+import Container from "react-bootstrap/Container";
 
 function App() {
     return (
+        /*
         <div style={{
-            backgroundImage: "url(/Background_2.png)",
+            backgroundImage: "url(/Background.jpg)",
             backgroundRepeat: "no-repeat", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"
         }}>
-            <Row className="mx-5">
-                <SecComNavbar title="Home"/>
-                <Router>
-                    <Routes>
-
-                    </Routes>
-                </Router>
-            </Row>
-        </div>
+        <Container className="p-0" style={{backgroundColor: "#1f1e1e", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
+         */
+        <Container className="p-0" style={{backgroundImage: "url(/Background2.jpg)", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
+            <SecComNavbar/>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home/>}></Route>
+                    <Route path="*" element={<Home/>}></Route>
+                </Routes>
+            </Router>
+        </Container>
     );
 }
 
