@@ -20,8 +20,8 @@ function App() {
         <Container className="p-0" style={{backgroundColor: "#1f1e1e", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
          */
         <Container className="p-0" style={{backgroundImage: "url(/Background2.jpg)", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
-            <SecComNavbar/>
             <Router>
+                <SecComNavbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
                     <Route path="*" element={<Home/>}></Route>
