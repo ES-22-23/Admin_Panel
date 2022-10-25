@@ -17,7 +17,7 @@ const ButtonCard = (props) => {
     }
 
     return (
-        <Container className="text-center justify-content-center d-flex">
+        <Container className="text-center justify-content-center d-flex" data-testid={props.title + "Button"}>
             <Link to={props.link} style={{textDecoration: "none"}}>
                 <Button className="shadow my-3 bg-white p-3 justify-content-center"
                         style={{border: "none", borderRadius: "20px", width: "9vw", height: "9vw", maxWidth:"320px", maxHeight:"320px"}}>

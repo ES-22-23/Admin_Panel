@@ -5,7 +5,7 @@ import background from '../../images/Background.jpg';
 
 const SecComCarousel = () => {
     return (
-        <Carousel>
+        <Carousel data-testid="SecComCarousel">
             <Carousel.Item>
                 <img
                     className="d-block w-100"
@@ -14,8 +14,8 @@ const SecComCarousel = () => {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>SecCom Smart Security</h3>
+                    <p>Smart CCTV system with built-in intruder detection and alarms for enterprises.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -27,8 +27,8 @@ const SecComCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>SecCom Functionalities</h3>
+                    <p>The SecCom Smart Security system allows enterprises to create and run a smart CCTV system to improve the security of their buildings.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -40,10 +40,8 @@ const SecComCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
+                    <h3>SecCom Support</h3>
+                    <p>Intruder detection powered by AI/ML modules and Intrusion Alarms that are triggered when an intruder is detected.</p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

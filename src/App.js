@@ -9,18 +9,15 @@ import {
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
 import Home from "./components/Home/Home";
 import Container from "react-bootstrap/Container";
+import {createBrowserHistory} from "history";
 
 function App() {
+
+    const customHistory = createBrowserHistory();
+
     return (
-        /*
-        <div style={{
-            backgroundImage: "url(/Background.jpg)",
-            backgroundRepeat: "no-repeat", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"
-        }}>
-        <Container className="p-0" style={{backgroundColor: "#1f1e1e", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
-         */
         <Container className="p-0" style={{backgroundImage: "url(/Background2.jpg)", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
-            <Router>
+            <Router history={customHistory}>
                 <SecComNavbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
