@@ -4,6 +4,7 @@ import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {BsFillHouseDoorFill, BsFillPeopleFill, BsFillPersonFill} from "react-icons/bs";
 import Container from "react-bootstrap/Container";
+import PropTypes from "prop-types";
 
 const ButtonCard = (props) => {
 
@@ -31,5 +32,22 @@ const ButtonCard = (props) => {
 
 };
 
+ButtonCard.propTypes = {
+    /** Title to be displayed on the button */
+    title: PropTypes.string,
+    /** Description to understand what the button does */
+    description: PropTypes.string,
+    /** Link to the page the button will take you to */
+    link: PropTypes.string,
+    /** Icon to be displayed on the button */
+    icon: PropTypes.string
+};
+
+ButtonCard.defaultProps = {
+    title: "Title",
+    description: "Description",
+    link: "/",
+    icon: "BsFillHouseDoorFill"
+}
 
 export default ButtonCard;
