@@ -15,6 +15,17 @@ const SecComNavbar = () => {
         setUrl(location.pathname);
     }, [location]);
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return (
+            <Navbar className="justify-content-center" style={{backgroundColor: "rgba(0,0,0,0.60)"}} expand="lg">
+                <Navbar.Brand href="/" className="py-3 text-white" data-testid="SecComLogo">
+                    <BsFillCameraVideoFill /> SecCom
+                </Navbar.Brand>
+            </Navbar>
+        );
+    }
+
     return (
         <Navbar variant="dark" style={{backgroundColor: "rgba(0,0,0,0.70)"}} data-testid="SecComNavbar">
             <Container className="py-2 my-2">
