@@ -17,6 +17,7 @@ import Authentication from "./components/Authentication/Authentication";
 import PrivateRoute from "./helpers/PrivateRoute";
 import {useKeycloak} from "@react-keycloak/web";
 import {Spinner} from "react-bootstrap";
+import Account from "./components/Account/Account";
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
                 <SecComNavbar/>
                 <Routes>
                     <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
+                    <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>
