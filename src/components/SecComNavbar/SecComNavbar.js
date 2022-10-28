@@ -19,11 +19,11 @@ const SecComNavbar = () => {
 
     const { keycloak, initialized } = useKeycloak();
 
-    if (!keycloak.authenticated) {
+    if (initialized && !keycloak.authenticated) {
         return (
             <Navbar className="justify-content-center" style={{backgroundColor: "rgba(0,0,0,0.60)"}} expand="lg">
-                <Navbar.Brand href="/" className="py-3 text-white" data-testid="SecComLogo">
-                    <BsFillCameraVideoFill /> SecCom
+                <Navbar.Brand href="/" className="p-3 text-white" data-testid="SecComLogo">
+                    <BsFillCameraVideoFill color="red"/> SecCom
                 </Navbar.Brand>
             </Navbar>
         );
