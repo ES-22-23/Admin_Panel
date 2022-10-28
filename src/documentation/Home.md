@@ -10,7 +10,7 @@ import SecComCarousel from "../SecComCarousel.md/SecComCarousel.md";
 <SecComCarousel />
 ```
 
-```jsx
+```js
 import ButtonCard from "../ButtonCard/ButtonCard";
 <ButtonCard props={props} />
 ```
