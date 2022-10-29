@@ -18,6 +18,7 @@ import PrivateRoute from "./helpers/PrivateRoute";
 import {useKeycloak} from "@react-keycloak/web";
 import {Spinner} from "react-bootstrap";
 import Account from "./components/Account/Account";
+import Owners from "./components/Owners/Owners";
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                     <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
+                    <Route path="/owners" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>

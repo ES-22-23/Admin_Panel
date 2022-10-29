@@ -1,12 +1,18 @@
 import axios from "axios";
 import keycloak from "../Keycloak";
 
-const apiAddress = process.env.REACT_APP_API_URL + "/api";
-
+// const apiAddress = process.env.REACT_APP_API_URL + "/api";
+const apiAddress = " https://18.170.92.180:8082";
 
 // Owner functions
 async function getOwners() {
     return await axios.get(apiAddress + "/owners", {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getOwner(ownerId) {
+    return await axios.get(apiAddress + "/owners/" + ownerId, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
@@ -34,6 +40,12 @@ async function deleteOwner(ownerId) {
 // Property functions
 async function getProperties() {
     return await axios.get(apiAddress + "/properties", {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getProperty(propertyId) {
+    return await axios.get(apiAddress + "/properties/" + propertyId, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
@@ -124,10 +136,12 @@ async function deleteAlarm(alarmId) {
 
 export {
     getOwners,
+    getOwner,
     createOwner,
     updateOwner,
     deleteOwner,
     getProperties,
+    getProperty,
     createProperty,
     updateProperty,
     deleteProperty,
@@ -140,5 +154,5 @@ export {
     getAlarm,
     createAlarm,
     updateAlarm,
-    deleteAlarm
+    deleteAlarm,
 };
