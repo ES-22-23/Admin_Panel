@@ -9,8 +9,6 @@ const Account = () => {
 
     const { keycloak, } = useKeycloak();
 
-    console.log(keycloak.tokenParsed);
-
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Account">
             <Row className="justify-content-center align-items-center d-flex mt-4 w-75" style={{maxWidth: "600px"}}>
