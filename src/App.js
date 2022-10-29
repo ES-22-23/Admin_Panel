@@ -6,22 +6,70 @@ import {
     Route
 } from "react-router-dom";
 
+import {createBrowserHistory} from "history";
+
+import Container from "react-bootstrap/Container";
+
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
 import Home from "./components/Home/Home";
-import Container from "react-bootstrap/Container";
-import {createBrowserHistory} from "history";
+import Authentication from "./components/Authentication/Authentication";
+
+import PrivateRoute from "./helpers/PrivateRoute";
+import {useKeycloak} from "@react-keycloak/web";
+import {Spinner} from "react-bootstrap";
 
 function App() {
 
     const customHistory = createBrowserHistory();
 
+    const {keycloak, initialized} = useKeycloak();
+
+    if (!initialized) {
+        return (
+            <Container className="p-0 text-center align-items-center justify-content-center d-flex" style={{
+                backgroundImage: "url(/Background2.jpg)",
+                backgroundSize: "cover",
+                minHeight: "100vh",
+                minWidth: "100vw"
+            }}>
+                <Spinner animation="border" role="status"/>
+            </Container>
+        );
+    }
+
+    if (!keycloak.authenticated) {
+        return (
+            <Container className="p-0" style={{
+                backgroundImage: "url(/Background2.jpg)",
+                backgroundSize: "cover",
+                minHeight: "100vh",
+                minWidth: "100vw"
+            }}>
+                <Router history={customHistory}>
+                    <SecComNavbar/>
+                    <Container className="text-center justify-content-center d-flex py-5" data-testid="Home">
+                        <Routes>
+                            <Route path="/" element={<Authentication/>}></Route>
+                            <Route path="*" element={<Authentication/>}></Route>
+                        </Routes>
+                    </Container>
+                </Router>
+            </Container>
+        );
+    }
+
     return (
-        <Container className="p-0" style={{backgroundImage: "url(/Background2.jpg)", backgroundSize: "cover", minHeight: "100vh", minWidth: "100vw"}}>
+        <Container className="p-0" style={{
+            backgroundImage: "url(/Background2.jpg)",
+            backgroundSize: "cover",
+            minHeight: "100vh",
+            minWidth: "100vw"
+        }}>
             <Router history={customHistory}>
                 <SecComNavbar/>
                 <Routes>
-                    <Route path="/" element={<Home/>}></Route>
-                    <Route path="*" element={<Home/>}></Route>
+                    <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
+                    <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>
         </Container>

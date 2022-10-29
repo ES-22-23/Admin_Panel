@@ -7,6 +7,8 @@ import {BsFillCameraVideoFill} from "react-icons/bs";
 import {useLocation} from "react-router-dom";
 import {Button, Col} from "react-bootstrap";
 
+import { useKeycloak } from "@react-keycloak/web";
+
 const SecComNavbar = () => {
 
     const location = useLocation();
@@ -14,6 +16,18 @@ const SecComNavbar = () => {
     useEffect(() => {
         setUrl(location.pathname);
     }, [location]);
+
+    const { keycloak, initialized } = useKeycloak();
+
+    if (initialized && !keycloak.authenticated) {
+        return (
+            <Navbar className="justify-content-center" style={{backgroundColor: "rgba(0,0,0,0.60)"}} expand="lg">
+                <Navbar.Brand href="/" className="p-3 text-white" data-testid="SecComLogo">
+                    <BsFillCameraVideoFill color="red"/> SecCom
+                </Navbar.Brand>
+            </Navbar>
+        );
+    }
 
     return (
         <Navbar variant="dark" style={{backgroundColor: "rgba(0,0,0,0.70)"}} data-testid="SecComNavbar">
@@ -31,7 +45,7 @@ const SecComNavbar = () => {
                     </Nav>
                 </Navbar.Collapse>
                 <Col className="justify-content-end d-flex">
-                    <Button variant="outline-danger" className="px-3" href="/logout">Logout</Button>
+                    <Button variant="outline-danger" className="px-3" onClick={() => keycloak.logout()}>Logout {keycloak.tokenParsed.preferred_username}</Button>
                 </Col>
             </Container>
         </Navbar>
