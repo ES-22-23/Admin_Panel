@@ -45,7 +45,7 @@ function App() {
                 backgroundImage: "url(/Background2.jpg)",
                 backgroundSize: "cover",
                 minHeight: "100vh",
-                minWidth: "100vw"
+                maxWidth: "100vw"
             }}>
                 <Router history={customHistory}>
                     <SecComNavbar/>
@@ -65,7 +65,7 @@ function App() {
             backgroundImage: "url(/Background2.jpg)",
             backgroundSize: "cover",
             minHeight: "100vh",
-            minWidth: "100vw"
+            maxWidth: "100vw"
         }}>
             <Router history={customHistory}>
                 <SecComNavbar/>

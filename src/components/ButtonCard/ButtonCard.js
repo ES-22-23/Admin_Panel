@@ -3,7 +3,6 @@ import React from 'react';
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {BsFillHouseDoorFill, BsFillPeopleFill, BsFillPersonFill} from "react-icons/bs";
-import Container from "react-bootstrap/Container";
 import PropTypes from "prop-types";
 
 const ButtonCard = (props) => {
@@ -18,16 +17,14 @@ const ButtonCard = (props) => {
     }
 
     return (
-        <Container className="text-center justify-content-center d-flex" data-testid={props.title + "Button"}>
-            <Link to={props.link} style={{textDecoration: "none"}}>
-                <Button className="shadow my-3 bg-white p-3 justify-content-center"
-                        style={{border: "none", borderRadius: "20px", width: "9vw", height: "9vw", maxWidth:"320px", maxHeight:"320px"}}>
-                    {icon}
-                    <h3 style={{color: "black", fontSize: "1.1vw"}}>{props.title}</h3>
-                    <h3 style={{color: "black", fontSize: "0.7vw"}}>{props.description}</h3>
-                </Button>
-            </Link>
-        </Container>
+        <Link to={props.link} style={{textDecoration: "none"}} data-testid={props.title + "Button"}>
+            <Button className="shadow my-3 bg-white px-2 p-4 justify-content-center w-100"
+                    style={{border: "none", borderRadius: "20px"}}>
+                {icon}
+                <h3 style={{color: "black", fontSize: "120%"}}>{props.title}</h3>
+                <h3 style={{color: "black", fontSize: "80%"}}>{props.description}</h3>
+            </Button>
+        </Link>
     );
 
 };
