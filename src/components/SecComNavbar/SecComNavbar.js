@@ -23,7 +23,7 @@ const SecComNavbar = () => {
         return (
             <Navbar className="justify-content-center" style={{backgroundColor: "rgba(0,0,0,0.60)"}} expand="lg">
                 <Navbar.Brand href="/" className="p-3 text-white" data-testid="SecComLogo">
-                    <BsFillCameraVideoFill color="red"/> SecCom
+                    <BsFillCameraVideoFill color="#DC3545"/> SecCom
                 </Navbar.Brand>
             </Navbar>
         );
@@ -33,7 +33,7 @@ const SecComNavbar = () => {
         <Navbar variant="dark" style={{backgroundColor: "rgba(0,0,0,0.70)"}} data-testid="SecComNavbar">
             <Container className="py-2 my-2">
                 <Navbar.Brand href="/" className="pe-5" data-testid="SecComLogo">
-                    <BsFillCameraVideoFill color="red"/> SecCom
+                    <BsFillCameraVideoFill color="#DC3545"/> SecCom
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">

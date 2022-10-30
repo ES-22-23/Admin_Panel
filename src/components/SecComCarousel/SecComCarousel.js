@@ -5,10 +5,10 @@ import background from '../../images/Background.jpg';
 
 const SecComCarousel = () => {
     return (
-        <Carousel data-testid="SecComCarousel">
+        <Carousel className="shadow" data-testid="SecComCarousel">
             <Carousel.Item>
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 shadow"
                     src={background}
                     style={{borderRadius: "20px"}}
                     alt="First slide"
@@ -20,7 +20,7 @@ const SecComCarousel = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 shadow"
                     src={background}
                     style={{borderRadius: "20px"}}
                     alt="Second slide"
@@ -33,7 +33,7 @@ const SecComCarousel = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 shadow"
                     src={background}
                     style={{borderRadius: "20px"}}
                     alt="Third slide"

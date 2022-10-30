@@ -8,7 +8,7 @@ import {useKeycloak} from "@react-keycloak/web";
 
 const Authentication = () => {
 
-    const { keycloak, initialized } = useKeycloak();
+    const { keycloak, } = useKeycloak();
 
     useEffect(() => {
         if (keycloak.authenticated) {
@@ -21,7 +21,7 @@ const Authentication = () => {
         <Container className="text-center justify-content-center d-flex py-4" data-testid="Home">
             <Row className="justify-content-center align-items-center d-flex mt-4">
                 <Col className="col-4 me-5">
-                    <Card className="p-5 text-white" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
+                    <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                         <h2>SecCom</h2>
                         <h5>Smart Security</h5>
                         <h6 className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis ligula non magna

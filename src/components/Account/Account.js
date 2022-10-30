@@ -12,20 +12,20 @@ const Account = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Account">
             <Row className="justify-content-center align-items-center d-flex mt-4 w-75" style={{maxWidth: "600px"}}>
-                <Card className="p-5 text-white" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
+                <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                     <Row>
                         <h3>Account</h3>
                         <Col className="my-3 col-6">
-                            <h3><BsFillPersonLinesFill color="red"/> Full Name</h3>
+                            <h3><BsFillPersonLinesFill/> Full Name</h3>
                             <h5 className="p-4  mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.name}</h5>
                         </Col>
                         <Col className="my-3 col-6">
-                            <h3><BsEnvelopeFill color="red"/> Username</h3>
+                            <h3><BsEnvelopeFill/> Username</h3>
                             <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.preferred_username}</h5>
                         </Col>
                         <Col className="my-3">
-                            <h3><BsEnvelopeFill color="red"/> Email</h3>
-                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.email} <span style={{fontSize: "0.8rem", color: "red"}}>{keycloak.tokenParsed.email_verified ? "Verified" : "Not Verified"}</span>
+                            <h3><BsEnvelopeFill/> Email</h3>
+                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.email} <span style={{fontSize: "0.8rem", color: "#DC3545"}}>{keycloak.tokenParsed.email_verified ? "Verified" : "Not Verified"}</span>
                             </h5>
                         </Col>
                     </Row>
