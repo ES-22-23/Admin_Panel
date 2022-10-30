@@ -9,6 +9,10 @@ const OwnerCard = (props) => {
     const owner = props.owner;
     const [hidden, setHidden] = React.useState(true);
 
+    const handleViewProperties = () => {
+        window.location.href = "/owners/" + owner.username + "/properties";
+    }
+
     return (
         <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
             <Row className="justify-content-center d-flex">
@@ -22,7 +26,7 @@ const OwnerCard = (props) => {
                 </Row>
             </Row>
             <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}} onClick={()=> setHidden(!hidden)}>View Details</Button>
-            <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}}>View Properties</Button>
+            <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}} onClick={() => handleViewProperties()}>View Properties</Button>
         </Card>
     );
 }

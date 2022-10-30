@@ -24,7 +24,7 @@ async function createOwner(owner) {
 }
 
 async function updateOwner(owner) {
-    return await axios.put(apiAddress + "/owners", owner, {
+    return await axios.put(apiAddress + "/owners/" + owner.username, owner, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
@@ -57,7 +57,7 @@ async function createProperty(property) {
 }
 
 async function updateProperty(property) {
-    return await axios.put(apiAddress + "/properties", property, {
+    return await axios.put(apiAddress + "/properties/" + property.id, property, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
@@ -89,7 +89,7 @@ async function createCamera(camera) {
 }
 
 async function updateCamera(camera) {
-    return await axios.put(apiAddress + "/cameras", camera, {
+    return await axios.put(apiAddress + "/cameras/" + camera.id, camera, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
@@ -122,7 +122,7 @@ async function createAlarm(alarm) {
 }
 
 async function updateAlarm(alarm) {
-    return await axios.put(apiAddress + "/alarms", alarm, {
+    return await axios.put(apiAddress + "/alarms/" + alarm.id, alarm, {
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
