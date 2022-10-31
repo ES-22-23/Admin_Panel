@@ -1,30 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import {Button, Card, Col, Form} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 import OwnerCard from "../OwnerCard/OwnerCard";
-import "./Owners.css";
+import SearchBar from "../SearchBar/SearchBar";
+import {getOwners} from "../../utils/ApiHandler";
 
 const Owners = () => {
 
-    const allOwners = [
-        {"username": "Owner1", "name": "John Smith", "email": "owner1@ua.pt", "properties": []},
-        {"username": "Owner2", "name": "Joahna Mary", "email": "owner2@ua.pt", "properties": []},
-        {"username": "Owner3", "name": "Joahna Mary", "email": "owner2@ua.pt", "properties": []},
-        {"username": "Owner4", "name": "Joahna Mary", "email": "owner2@ua.pt", "properties": []},
-    ]
+    const [allOwners, setAllOwners] = React.useState([]);
 
-    const [owners, setOwners] = React.useState(allOwners);
-    const [search, setSearch] = React.useState("");
-    const [searchBy, setSearchBy] = React.useState("");
+    useEffect(() => {
+        getOwners().then((response) => {
+            setAllOwners(response.data);
+        }).catch((error) => {
+            console.log(error);
+            setAllOwners([
+                {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
+                    {"id": 1, "name": "Property 1", "address": "Address1", "owner":
+                            {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt"},
+                        "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
+                    ]},
+                {"username": "Luna", "name": "Luna Mary", "email": "luna@ua.pt", "properties": []},
+            ]);
+        });
+    }, []);
 
-    const handleSearch = () => {
-        // console.log(search);
+    useEffect(() => {
+        setOwners(allOwners);
+    }, [allOwners]);
+
+    const [owners, setOwners] = React.useState([]);
+
+    const handleSearch = (search) => {
         if (search !== "") {
             setOwners(allOwners.filter(owner => owner.username.toLowerCase().includes(search.toLowerCase())
                 || owner.name.toLowerCase().includes(search.toLowerCase())));
         } else { setOwners(allOwners); }
-        setSearchBy(search);
     };
 
     let ownersPanels = [];
@@ -40,36 +52,11 @@ const Owners = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Owners">
             <Row className="w-100">
-                <Row className="my-4 justify-content-end d-flex">
-                    <Col className="col-6">
-                        <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.80)", textAlign: "start"}}>
-                            <span>Search by: <span style={{fontWeight: "bold"}}>{searchBy}</span></span>
-                        </Card>
-                    </Col>
-                    <Col className="col-lg-3">
-                        <Form className="d-flex">
-                            <Form.Control
-                                id="search"
-                                type="search"
-                                placeholder="Search"
-                                className="me-2 shadow text-white"
-                                aria-label="Search"
-                                style={{backgroundColor: "rgba(0,0,0,0.80)", borderRadius: "10px", border: "none"}}
-                                onChange={(e) => setSearch(e.target.value)}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter') {
-                                        e.preventDefault()
-                                        handleSearch();
-                                    }
-                                }}
-                            />
-                            <Button variant="danger" onClick={handleSearch.bind(this)}>Search</Button>
-                        </Form>
-                    </Col>
-                </Row>
+                <SearchBar handleSearch={handleSearch.bind(this)}/>
                 <Row className="justify-content-start d-flex">
                     {ownersPanels}
-                </Row></Row>
+                </Row>
+            </Row>
         </Container>
     );
 }

@@ -6,7 +6,7 @@ src/components/Authentication/Authentication.js
 # Child Components
 
 ```js
-import SecComCarousel from "../SecComCarousel.md/SecComCarousel.md";
+import SecComCarousel from "../SecComCarousel/SecComCarousel";
 <SecComCarousel />
 ```
 
