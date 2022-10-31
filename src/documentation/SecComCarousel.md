@@ -1,7 +1,7 @@
-# SecComCarousel.md
+# SecComCarousel
 
 ## Path
-src/components/SecComNavbar/SecComNavbar.js
+src/components/SecComCarousel/SecComCarousel.js
 
 ## Child Components
 N/A
