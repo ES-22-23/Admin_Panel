@@ -23,6 +23,9 @@ import OwnerProperties from "./components/OwnerProperties/OwnerProperties";
 import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
 
+import {Flip, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
     const customHistory = createBrowserHistory();
@@ -63,6 +66,20 @@ function App() {
         );
     }
 
+    let toastContainer = <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        theme={"light"}
+        rtl={false}
+        transition={Flip}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        style={{color: "#000000"}}/>;
+
     return (
         <Container className="p-0" style={{
             backgroundImage: "url(/Background2.jpg)",
@@ -83,6 +100,7 @@ function App() {
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>
+            {toastContainer}
         </Container>
     );
 }

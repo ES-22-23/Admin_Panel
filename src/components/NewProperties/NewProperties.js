@@ -5,7 +5,9 @@ import Row from "react-bootstrap/Row";
 import {Button, Card, Form} from "react-bootstrap";
 import {BsFillPersonFill} from "react-icons/bs";
 import {FaHouseUser} from "react-icons/fa";
-import {createProperty} from "../../utils/ApiHandler";
+import {createProperty, getOwner} from "../../utils/ApiHandler";
+import {toast} from "react-toastify";
+import AutoComplete from "../AutoComplete/AutoComplete";
 
 const NewProperties = () => {
 
@@ -20,13 +22,19 @@ const NewProperties = () => {
 
         // console.log(property);
 
-        createProperty(property).then((response) => {
+        getOwner(owner).then((response) => {
             console.log(response);
-            window.location.href = "/properties";
+            createProperty(property).then((response) => {
+                console.log(response);
+                window.location.href = "/properties";
+            }).catch((error) => {
+                console.log(error);
+                toast.error("Unable to create property.");
+            });
         }).catch((error) => {
             console.log(error);
+            toast.error("Owner not found.");
         });
-
     };
 
     return (
@@ -44,19 +52,23 @@ const NewProperties = () => {
                                               onKeyDown={(e) => {
                                                   if (e.key === 'Enter') {
                                                       e.preventDefault()
-                                                  }}}/>
+                                                  }}}
+                                              autoComplete="off"/>
                             </Form.Group>
                             <Form.Group className="mb-4" controlId="formOwner">
                                 <Form.Label><h4><BsFillPersonFill/> Owner Username</h4></Form.Label>
                                 <Form.Control size="lg" type="text" placeholder="Owner Username" className="text-white"
                                               style={{backgroundColor: "rgba(0,0,0,0.60)", border: "none"}}
+                                              value={owner}
                                               onChange={(e) => setOwner(e.target.value)}
                                               onKeyDown={(e) => {
                                                   if (e.key === 'Enter') {
                                                       e.preventDefault()
-                                                  }}}/>
+                                                  }}}
+                                              autoComplete="off"/>
                             </Form.Group>
-                            <Form.Group className="mb-4" controlId="formAddress">
+                            <AutoComplete input={owner} handleAutocomplete={(username) => setOwner(username)}/>
+                            <Form.Group className="my-4" controlId="formAddress">
                                 <Form.Label><h4><FaHouseUser/> Property Address</h4></Form.Label>
                                 <Form.Control size="lg" as="textarea" rows={3} placeholder="Property Address" className="text-white"
                                               style={{backgroundColor: "rgba(0,0,0,0.60)", border: "none"}}
