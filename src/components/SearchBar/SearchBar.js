@@ -17,13 +17,16 @@ const SearchBar = (props) => {
     };
 
     return (
-        <Row className="my-4 justify-content-end d-flex" data-testid="SearchBar">
-            <Col className="col-6">
+        <Row className="my-4 justify-content-start d-flex" data-testid="SearchBar">
+            <Col className="col-lg-3 col-7 justify-content-start d-flex mb-3">
+                <Button variant="danger" style={{width: "50%"}} href={props.addNew}>Add New</Button>
+            </Col>
+            <Col className="col-6 mb-3">
                 <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.80)", textAlign: "start"}}>
                     <span>Search by: <span style={{fontWeight: "bold"}}>{searchBy}</span></span>
                 </Card>
             </Col>
-            <Col className="col-lg-3">
+            <Col className="col-lg-3 mb-3">
                 <Form className="d-flex">
                     <Form.Control
                         id="search"

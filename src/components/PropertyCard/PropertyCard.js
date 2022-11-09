@@ -68,9 +68,9 @@ const PropertyCard = (props) => {
                     <h6 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.id}</h6>
                     <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.name}</h6>
                     <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.address}</h6>
-                </Row>
-                <Row className="p-0 mb-4">
-                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.owner.username}</h6>
+                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.owner} <span style={{fontSize: "0.8rem", color: "#DC3545", cursor: "pointer"}}
+                                                                                                                                        onClick={() => window.location.href = "/owners/" + property.owner}>View</span>
+                    </h6>
                 </Row>
                 {alarmsPanels}
                 {camerasPanels}
