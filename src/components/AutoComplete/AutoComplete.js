@@ -40,7 +40,7 @@ const AutoComplete = (props) => {
     };
 
     if (input === "" || suggestions.length === 0) {
-        return null;
+        return <div data-testid="AutoComplete"></div>;
     }
 
     let suggestionsPanels = [];
@@ -54,7 +54,7 @@ const AutoComplete = (props) => {
     }
 
     return (
-        <Card className="p-3 text-white shadow" style={{border: "none", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}} data-testid="PropertyCard">
+        <Card className="p-3 text-white shadow" style={{border: "none", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}} data-testid="AutoComplete">
             <Row className="justify-content-center d-flex">
                 {suggestionsPanels}
             </Row>

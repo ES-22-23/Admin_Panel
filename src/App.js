@@ -24,7 +24,6 @@ import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
 
 import {Flip, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -55,7 +54,7 @@ function App() {
             }}>
                 <Router history={customHistory}>
                     <SecComNavbar/>
-                    <Container className="text-center justify-content-center d-flex py-5" data-testid="Home">
+                    <Container className="text-center justify-content-center d-flex py-5">
                         <Routes>
                             <Route path="/" element={<Authentication/>}></Route>
                             <Route path="*" element={<Authentication/>}></Route>
@@ -88,7 +87,7 @@ function App() {
             maxWidth: "100vw"
         }}>
             <Router history={customHistory}>
-                <SecComNavbar/>
+                <SecComNavbar keycloak={keycloak}/>
                 <Routes>
                     <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                     <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
