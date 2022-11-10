@@ -22,19 +22,23 @@ const NewProperties = () => {
 
         // console.log(property);
 
-        getOwner(owner).then((response) => {
-            console.log(response);
-            createProperty(property).then((response) => {
+        if (name === "" || owner === "" || address === "") {
+            toast.error("Please answer all fields.");
+        } else {
+            getOwner(owner).then((response) => {
                 console.log(response);
-                window.location.href = "/properties";
+                createProperty(property).then((response) => {
+                    console.log(response);
+                    window.location.href = "/properties";
+                }).catch((error) => {
+                    console.log(error);
+                    toast.error("Unable to create property.");
+                });
             }).catch((error) => {
                 console.log(error);
-                toast.error("Unable to create property.");
+                toast.error("Owner not found.");
             });
-        }).catch((error) => {
-            console.log(error);
-            toast.error("Owner not found.");
-        });
+        }
     };
 
     return (
