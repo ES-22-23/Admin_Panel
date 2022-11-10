@@ -52,9 +52,14 @@ const SearchBar = (props) => {
 
 SearchBar.propTypes = {
     /** Function to be called when the search button is clicked */
-    handleSearch: PropTypes.func
+    handleSearch: PropTypes.func,
+    /** URL to be redirected to when the add new button is clicked */
+    addNew: PropTypes.string
 };
 
-SearchBar.defaultProps = {};
+SearchBar.defaultProps = {
+    handleSearch: () => {},
+    addNew: "/",
+};
 
 export default SearchBar;

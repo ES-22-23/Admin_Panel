@@ -12,7 +12,7 @@ import OwnerCard from "../OwnerCard/OwnerCard";
 
 ```js
 import SearchBar from "../SearchBar/SearchBar";
-<SearchBar handleSearch={handleSearch} />
+<SearchBar handleSearch={handleSearch} addNew="/new/owners"/>
 ```
 
 ## Props

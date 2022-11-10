@@ -3,6 +3,7 @@ import './AutoComplete.css';
 import {Card} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import {getOwners} from "../../utils/ApiHandler";
+import PropTypes from "prop-types";
 
 const AutoComplete = (props) => {
 
@@ -62,8 +63,16 @@ const AutoComplete = (props) => {
 
 };
 
-AutoComplete.propTypes = {};
+AutoComplete.propTypes = {
+    /** The input to be autocompleted */
+    input: PropTypes.string,
+    /** The function to be called when an autocomplete is selected */
+    handleAutoComplete: PropTypes.func
+};
 
-AutoComplete.defaultProps = {};
+AutoComplete.defaultProps = {
+    input: "",
+    handleAutoComplete: () => {}
+};
 
 export default AutoComplete;
