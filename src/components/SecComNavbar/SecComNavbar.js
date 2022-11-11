@@ -41,6 +41,7 @@ const SecComNavbar = () => {
                         <Nav.Link href="/" className="px-3" active={url === "/" || url === "/home.feature"}>Home</Nav.Link>
                         <Nav.Link href="/properties" className="px-3" active={url === "/properties"}>Properties</Nav.Link>
                         <Nav.Link href="/owners" className="px-3" active={url === "/owners"}>Owners</Nav.Link>
+                        <Nav.Link href="/history" className="px-3" active={url === "/history"}>History</Nav.Link>
                         <Nav.Link href="/account" className="px-3" active={url === "/account"}>Account</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

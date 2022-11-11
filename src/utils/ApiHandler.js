@@ -133,6 +133,12 @@ async function deleteAlarm(alarmId) {
     });
 }
 
+async function getActions() {
+    return await axios.get(apiAddress + "/actions", {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
 
 export {
     getOwners,
@@ -155,4 +161,5 @@ export {
     createAlarm,
     updateAlarm,
     deleteAlarm,
+    getActions
 };

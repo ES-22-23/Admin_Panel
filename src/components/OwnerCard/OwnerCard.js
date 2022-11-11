@@ -29,7 +29,7 @@ const OwnerCard = (props) => {
                     <h6 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="OwnerName">{owner.name}</h6>
                 </Row>
                 <Row className="p-0" hidden={hidden}>
-                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="OwnerUsername">>{owner.username}</h6>
+                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="OwnerUsername">{owner.username}</h6>
                     <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="OwnerEmail">{owner.email}</h6>
                 </Row>
             </Row>
