@@ -21,8 +21,7 @@ const OwnerProperties = () => {
         }).catch((error) => {
             console.log(error);
             setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
-                    {"id": 1, "name": "Property 1", "address": "Address1", "owner":
-                            {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt"},
+                    {"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
                         "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
             ]});
         });
@@ -56,7 +55,7 @@ const OwnerProperties = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="OwnerProperties">
             <Row className="w-100">
-                <SearchBar handleSearch={handleSearch.bind(this)}/>
+                <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/properties"/>
                 <Row className="justify-content-start d-flex">
                     {propertiesPanels}
                 </Row>

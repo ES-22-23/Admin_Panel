@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import Row from "react-bootstrap/Row";
 import {FaHouseUser} from "react-icons/fa";
@@ -8,7 +8,7 @@ import {BsCameraVideoFill} from "react-icons/bs";
 
 const PropertyCard = (props) => {
 
-    const property = props.property;
+    const [property, setProperty] = useState(props.property);
 
     const [alarmsHidden, setAlarmsHidden] = React.useState(true);
     const [camerasHidden, setCamerasHidden] = React.useState(true);
@@ -25,8 +25,12 @@ const PropertyCard = (props) => {
     }
 
     useEffect(() => {
+        setProperty(props.property);
+    }, [props.property]);
+
+    useEffect(() => {
         let alarms = [];
-        if (!alarmsHidden) {
+        if (!alarmsHidden && property.alarms) {
             for (let idx in property.alarms) {
                 const alarm = property.alarms[idx];
                 alarms.push(
@@ -40,11 +44,11 @@ const PropertyCard = (props) => {
             }
         }
         setAlarmsPanels(alarms);
-    }, [alarmsHidden, property.alarms]);
+    }, [alarmsHidden, property]);
 
     useEffect(() => {
         let cameras = [];
-        if (!camerasHidden) {
+        if (!camerasHidden && property.cameras) {
             for (let idx in property.cameras) {
                 const camera = property.cameras[idx];
                 cameras.push(
@@ -58,19 +62,23 @@ const PropertyCard = (props) => {
             }
         }
         setCamerasPanels(cameras);
-    }, [camerasHidden, property.cameras]);
+    }, [camerasHidden, property]);
+
+    if (property === undefined) {
+        return <div data-testid="PropertyCard"></div>;
+    }
 
     return (
         <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}} data-testid="PropertyCard">
             <Row className="justify-content-center d-flex">
                 <FaHouseUser size={50}/>
                 <Row className="p-0">
-                    <h6 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.id}</h6>
-                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.name}</h6>
-                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.address}</h6>
-                </Row>
-                <Row className="p-0 mb-4">
-                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.owner.username}</h6>
+                    <h6 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="PropertyId">{property.id}</h6>
+                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="PropertyName">{property.name}</h6>
+                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}} data-testid="PropertyAddress">{property.address}</h6>
+                    <h6 className="p-4 mt-1" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{property.owner} <span style={{fontSize: "0.8rem", color: "#DC3545", cursor: "pointer"}}
+                                                                                                                                        onClick={() => window.location.href = "/owners/" + property.owner}>View</span>
+                    </h6>
                 </Row>
                 {alarmsPanels}
                 {camerasPanels}

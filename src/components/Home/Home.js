@@ -17,8 +17,8 @@ const Home = () => {
     for (let idx in options) {
         const option = options[idx]
         buttons.push(
-            <Row>
-                <ButtonCard title={option.title} description={option.description} link={option.link} icon={option.icon} key={option.title}/>
+            <Row key={option.title}>
+                <ButtonCard title={option.title} description={option.description} link={option.link} icon={option.icon}/>
             </Row>
         );
     }
