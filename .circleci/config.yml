@@ -33,3 +33,4 @@ workflows:
   test:
     jobs:
       - test
+      - build_and_push_image
