@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Run Jest Tests
+          command: |
+            npm install
+            npm test
+             
+workflows:
+  test:
+    jobs:
+      - test
