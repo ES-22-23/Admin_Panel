@@ -18,8 +18,8 @@ jobs:
     machine: true
     steps:
       - aws-ecr/build-and-push-image:
-          aws-access-key-id: ${AWS_ACCESS_KEY}
-          aws-secret-access-key: ${AWS_SECRET_KEY}
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_SECRET_KEY
           dockerfile: Dockerfile
           path: ..
           platform: linux/amd64
@@ -30,7 +30,7 @@ jobs:
           tag: 'admin_panel'
              
 workflows:
-  test:
+  test-and-push:
     jobs:
       - test
       - build_and_push_image
