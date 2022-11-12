@@ -23,7 +23,7 @@ const NewProperties = () => {
         // console.log(property);
 
         if (name === "" || owner === "" || address === "") {
-            toast.error("Please answer all fields.");
+            toast.error("Please fill in all fields.");
         } else {
             getOwner(owner).then((response) => {
                 console.log(response);

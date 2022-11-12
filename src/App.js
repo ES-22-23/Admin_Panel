@@ -93,7 +93,7 @@ function App() {
                     <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                     <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
                     <Route path="/owners" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
-                    <Route path="/owners/:username/" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
+                    <Route path="/owners/:username" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>

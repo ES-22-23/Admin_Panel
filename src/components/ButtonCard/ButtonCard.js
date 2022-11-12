@@ -14,6 +14,8 @@ const ButtonCard = (props) => {
         icon = <BsFillPersonFill color="black" size="2.2vw" className="mb-2"/>
     } else if (props.icon && props.icon === "BsFillPeopleFill") {
         icon = <BsFillPeopleFill color="black" size="2.2vw" className="mb-2"/>
+    } else if (props.icon) {
+        icon = <BsFillPeopleFill color="black" size="2.2vw" className="mb-2"/>
     }
 
     return (

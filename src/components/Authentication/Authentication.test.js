@@ -1,32 +1,34 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Authentication from './Authentication';
-import {ReactKeycloakProvider} from "@react-keycloak/web";
-import keycloak from "../../Keycloak";
+
+let mockInitialized = false;
+let mockKeycloakStub = {};
+
+jest.mock("@react-keycloak/web", () => {
+    const originalModule = jest.requireActual("@react-keycloak/web");
+    return {
+        ...originalModule,
+        useKeycloak: () => [
+            mockKeycloakStub,
+            mockInitialized
+        ]
+    };
+});
 
 describe('<Authentication />', () => {
-  test('it should mount', () => {
+    test('it should mount', () => {
+        render(<Authentication/>);
 
-    let mockInitialized = true;
-    let mockKeycloakStub = {};
-
-    jest.mock("@react-keycloak/web", () => {
-      const originalModule = jest.requireActual("@react-keycloak/web");
-      return {
-        ...originalModule,
-        useKeycloak: () =>  [
-          mockKeycloakStub,
-          mockInitialized
-        ]
-      };
+        const authentication = screen.getByTestId('Authentication');
+        expect(authentication).toBeInTheDocument();
     });
 
-    render(<ReactKeycloakProvider authClient={keycloak}>
-      <Authentication /></ReactKeycloakProvider>);
-    
-    const authentication = screen.getByTestId('Authentication');
+    test('it should have the login button', () => {
+        render(<Authentication/>);
 
-    expect(authentication).toBeInTheDocument();
-  });
+        const button = screen.getByText("Login");
+        expect(button).toBeInTheDocument();
+    });
 });

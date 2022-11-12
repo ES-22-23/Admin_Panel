@@ -14,7 +14,8 @@ const History = () => {
 
     useEffect(() => {
         getActions().then((response) => {
-            setAllHistory(response.data);
+            if (response)
+                setAllHistory(response.data);
         }).catch((error) => {
             console.log(error);
             toast.error("Unable to get History.");
@@ -55,7 +56,6 @@ const History = () => {
         if (search !== "")
             historyFiltered = historyFiltered.filter(history => history.admin.toLowerCase().includes(search.toLowerCase()));
 
-        console.log(search)
         setHistory(historyFiltered);
 
     }, [action, entity, search]);
@@ -68,7 +68,7 @@ const History = () => {
     for (let idx in history) {
         const action = history[idx];
         actionsPanels.push(
-            <Card className="my-2" style={{backgroundColor: "rgba(0,0,0,0.60)"}} key={action.id}>
+            <Card className="my-2" style={{backgroundColor: "rgba(0,0,0,0.60)"}} key={action.id} data-testid={action.id}>
                 <Card.Body>
                     <Card.Title><span style={{color: "#DC3545", fontSize: "85%"}}>{action.action_type}</span> {action.entity_type} {action.entity_id}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{action.date.replace("T", " ")}</Card.Subtitle>
@@ -79,9 +79,7 @@ const History = () => {
     }
 
     if (actionsPanels.length === 0)
-        actionsPanels.push(
-            <h6>No results.</h6>
-        );
+        actionsPanels = <h6>No results.</h6>;
 
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="History">
@@ -90,7 +88,7 @@ const History = () => {
                     <Col className="col-lg-3 col-6">
                         <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                             <h6>Filter by <br /><span style={{fontWeight: "bold"}}>Entity</span></h6>
-                            <Form.Group className="py-2">
+                            <Form.Group className="py-2" data-testid="EntityForm">
                                 <Form.Select className="text-white" style={{backgroundColor: "rgba(0,0,0,0.80)", border: "none"}}
                                              onChange={(event) => setEntity(event.target.value)}>
                                     <option value="All">All</option>
@@ -105,7 +103,7 @@ const History = () => {
                     <Col className="col-lg-3 col-6">
                         <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                             <h6>Filter by <br /><span style={{fontWeight: "bold"}}>Action</span></h6>
-                            <Form.Group className="py-2">
+                            <Form.Group className="py-2" data-testid="ActionForm">
                                 <Form.Select className="text-white" style={{backgroundColor: "rgba(0,0,0,0.80)", border: "none"}}
                                              onChange={(event) => setAction(event.target.value)}>
                                     <option value="All">All</option>
