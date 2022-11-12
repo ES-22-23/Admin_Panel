@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.3
+
 jobs:
   test:
     machine: true
@@ -10,6 +13,21 @@ jobs:
           command: |
             npm install
             npm test
+
+  build_and_push_image:
+    machine: true
+    steps:
+      - aws-ecr/build-and-push-image:
+          aws-access-key-id: ${AWS_ACCESS_KEY}
+          aws-secret-access-key: ${AWS_SECRET_KEY}
+          dockerfile: Dockerfile
+          path: ..
+          platform: linux/amd64
+          public-registry: false
+          push-image: true
+          region: eu-west-2
+          repo: ${AWS_ECR_REPOSITORY}
+          tag: 'admin_panel'
              
 workflows:
   test:
