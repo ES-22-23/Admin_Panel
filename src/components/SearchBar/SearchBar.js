@@ -27,7 +27,7 @@ const SearchBar = (props) => {
                 </Card>
             </Col>
             <Col className="col-lg-3 mb-3">
-                <Form className="d-flex">
+                <Form className="d-flex" autoComplete="off">
                     <Form.Control
                         id="search"
                         type="search"

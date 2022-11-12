@@ -123,10 +123,10 @@ const History = () => {
                                    <h6>Search by <br /><span style={{fontWeight: "bold"}}>Admin</span></h6>
                                </Col>
                                <Col>
-                                   <Button className="w-100 p-2" variant="danger" onClick={handleSearch.bind(this)}>Search</Button>
+                                   <Button className="w-100" variant="danger" onClick={handleSearch.bind(this)}>Search</Button>
                                </Col>
                            </Row>
-                            <Form className="py-2">
+                            <Form className="py-2" autoComplete="off">
                                 <Form.Control
                                     id="search"
                                     type="search"
