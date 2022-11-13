@@ -20,7 +20,7 @@ const OwnerProperties = () => {
             setOwner(response.data);
         }).catch((error) => {
             console.log(error);
-            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [1]});
+            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [{"id": 1}]});
         });
     }, [username]);
 
@@ -32,7 +32,7 @@ const OwnerProperties = () => {
             // Obtain property details
             for (let idx in owner.properties) {
                 const property = owner.properties[idx];
-                getProperty(property).then((response) => {
+                getProperty(property.id).then((response) => {
                     properties.push(response.data);
                 }).catch((error) => {
                     console.log(error);
