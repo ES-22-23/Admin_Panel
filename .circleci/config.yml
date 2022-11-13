@@ -31,7 +31,7 @@ jobs:
           public-registry: false
           push-image: true
           region: eu-west-2
-          repo: ${AWS_ECR_REPOSITORY}
+          repo: "es-22-23"
           tag: 'admin_panel'
              
 workflows:
