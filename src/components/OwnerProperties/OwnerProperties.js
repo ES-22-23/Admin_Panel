@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import {Col} from "react-bootstrap";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import SearchBar from "../SearchBar/SearchBar";
-import {getOwner} from "../../utils/ApiHandler";
+import {getOwner, getProperty} from "../../utils/ApiHandler";
 import {useParams} from "react-router-dom";
 
 const OwnerProperties = () => {
@@ -20,22 +20,33 @@ const OwnerProperties = () => {
             setOwner(response.data);
         }).catch((error) => {
             console.log(error);
-            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
-                    {"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-                        "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
-            ]});
+            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [1]});
         });
     }, [username]);
 
     useEffect(() => {
         if (owner !== undefined) {
-            setAllProperties(owner.properties);
-            setProperties(owner.properties);
+
+            let properties = [];
+
+            // Obtain property details
+            for (let idx in owner.properties) {
+                const property = owner.properties[idx];
+                getProperty(property).then((response) => {
+                    properties.push(response.data);
+                }).catch((error) => {
+                    console.log(error);
+                    // properties.push({"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
+                    //     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]});
+                });
+            }
+
+            setAllProperties(properties);
+            setProperties(properties);
         }
     }, [owner]);
 
     const handleSearch = (search) => {
-        // console.log(search);
         if (search !== "") {
             setProperties(allProperties.filter(property => property.address.toLowerCase().includes(search.toLowerCase())
                 || property.name.toLowerCase().includes(search.toLowerCase())));
