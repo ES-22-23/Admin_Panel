@@ -17,8 +17,7 @@ const NewProperties = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const property = {"name": name, "address": address, "owner": owner,
-            "cameras": [], "alarms": []};
+        const property = {"name": name, "address": address, "ownerUsername": owner};
 
         // console.log(property);
 
