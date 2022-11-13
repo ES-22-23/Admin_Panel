@@ -22,6 +22,7 @@ import Owners from "./components/Owners/Owners";
 import OwnerProperties from "./components/OwnerProperties/OwnerProperties";
 import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
+import History from "./components/History/History";
 
 import {Flip, ToastContainer} from "react-toastify";
 
@@ -92,10 +93,11 @@ function App() {
                     <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                     <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
                     <Route path="/owners" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
-                    <Route path="/owners/:username/" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
+                    <Route path="/owners/:username" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>
+                    <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>

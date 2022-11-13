@@ -1,57 +1,61 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import OwnerCard from './OwnerCard';
 
-const owner = {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
-    {"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-      "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
-  ]};
+const owner = {
+    "username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
+        {
+            "id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
+            "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]
+        }
+    ]
+};
 
 describe('<OwnerCard />', () => {
-  test('it should mount', () => {
-    render(<OwnerCard />);
-    
-    const ownerCard = screen.getByTestId('OwnerCard');
+    test('it should mount', () => {
+        render(<OwnerCard/>);
 
-    expect(ownerCard).toBeInTheDocument();
-  });
+        const ownerCard = screen.getByTestId('OwnerCard');
 
-  test('it should mount with owner', () => {
+        expect(ownerCard).toBeInTheDocument();
+    });
 
-    render(<OwnerCard owner={owner}/>);
+    test('it should mount with owner', () => {
 
-    const propertyCard = screen.getByTestId('OwnerCard');
-    expect(propertyCard).toBeInTheDocument();
-  });
+        render(<OwnerCard owner={owner}/>);
 
-  test('it should display owner username', () => {
+        const propertyCard = screen.getByTestId('OwnerCard');
+        expect(propertyCard).toBeInTheDocument();
+    });
 
-    render(<OwnerCard owner={owner}/>);
+    test('it should display owner username', () => {
 
-    const propertyCard = screen.getByTestId('OwnerUsername');
+        render(<OwnerCard owner={owner}/>);
 
-    expect(propertyCard).toBeInTheDocument();
-    expect(propertyCard).toHaveTextContent(owner.username);
-  });
+        const propertyCard = screen.getByTestId('OwnerUsername');
 
-  test('it should display owner name', () => {
+        expect(propertyCard).toBeInTheDocument();
+        expect(propertyCard).toHaveTextContent(owner.username);
+    });
 
-    render(<OwnerCard owner={owner}/>);
+    test('it should display owner name', () => {
 
-    const propertyCard = screen.getByTestId('OwnerName');
+        render(<OwnerCard owner={owner}/>);
 
-    expect(propertyCard).toBeInTheDocument();
-    expect(propertyCard).toHaveTextContent(owner.name);
-  });
+        const propertyCard = screen.getByTestId('OwnerName');
 
-  test('it should display owner email', () => {
+        expect(propertyCard).toBeInTheDocument();
+        expect(propertyCard).toHaveTextContent(owner.name);
+    });
 
-    render(<OwnerCard owner={owner}/>);
+    test('it should display owner email', () => {
 
-    const propertyCard = screen.getByTestId('OwnerEmail');
+        render(<OwnerCard owner={owner}/>);
 
-    expect(propertyCard).toBeInTheDocument();
-    expect(propertyCard).toHaveTextContent(owner.email);
-  });
+        const propertyCard = screen.getByTestId('OwnerEmail');
+
+        expect(propertyCard).toBeInTheDocument();
+        expect(propertyCard).toHaveTextContent(owner.email);
+    });
 });

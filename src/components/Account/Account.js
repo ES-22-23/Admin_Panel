@@ -1,9 +1,10 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import {useKeycloak} from "@react-keycloak/web";
 import {Card, Col} from "react-bootstrap";
 import {BsEnvelopeFill, BsFillPersonLinesFill} from "react-icons/bs";
+
+import {useKeycloak} from "@react-keycloak/web";
 
 const Account = () => {
 

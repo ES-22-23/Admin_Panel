@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './AutoComplete.css';
 import {Card} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 
 const AutoComplete = (props) => {
 
-    const [input, setInput] = React.useState(props.input);
-    const [allSuggestions, setAllSuggestions] = React.useState([]);
-    const [suggestions, setSuggestions] = React.useState([]);
+    const [input, setInput] = useState(props.input);
+    const [allSuggestions, setAllSuggestions] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
         getOwners().then((response) => {

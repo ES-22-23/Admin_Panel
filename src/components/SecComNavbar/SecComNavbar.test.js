@@ -1,24 +1,7 @@
 import React from 'react';
-// import {render, screen} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-// import SecComNavbar from './SecComNavbar';
-
-// import keycloak from "../../Keycloak";
-// import {ReactKeycloakProvider, useKeycloak} from "@react-keycloak/web";
-
-let mockInitialized = true;
-let mockKeycloakStub = {"tokenParsed": {"name": ""}};
-
-jest.mock("@react-keycloak/web", () => {
-    const originalModule = jest.requireActual("@react-keycloak/web");
-    return {
-        ...originalModule,
-        useKeycloak: () =>  [
-            mockKeycloakStub,
-            mockInitialized
-        ]
-    };
-});
+import SecComNavbar from './SecComNavbar';
 
 jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
@@ -27,42 +10,59 @@ jest.mock("react-router-dom", () => ({
     })
 }));
 
+jest.mock("@react-keycloak/web", () => ({ useKeycloak: mockUseKeycloak }));
+
+
+const username = "test";
+
+function mockUseKeycloak() {
+
+    const token = "A random string that is non zero length";
+    const realmAccess = { roles: ["user"] };
+    const userProfile = {
+        username: username,
+        email: "test@example.com",
+        firstName: "Test",  // or given_name
+        lastName: "User",   // or family_name
+        name: "Test User",
+    };
+    const tokenParsed = {
+        name: "Test User",
+        preferred_username: username,
+        email: "test@example.com",
+    };
+
+    const authClient = {
+        authenticated: true,
+        idToken: token,
+        profile: userProfile,
+        realm: "TestRealm",
+        realmAccess,
+        refreshToken: token,
+        tokenParsed: tokenParsed,
+        token,
+    };
+
+    return { initialized: true, keycloak: authClient };
+}
+
 describe('<SecComNavbar />', () => {
     test('it should mount', () => {
-        // render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
-
-        // const secComNavbar = screen.getByTestId('SecComNavbar');
-        // expect(secComNavbar).toBeInTheDocument();
-    });
-});
-
-/*
-describe('<SecComNavbar />', () => {
-    test('it should mount', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+        render(<SecComNavbar/>);
 
         const secComNavbar = screen.getByTestId('SecComNavbar');
         expect(secComNavbar).toBeInTheDocument();
     });
 
     test('it should have the logout button', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+        render(<SecComNavbar/>);
 
-        const button = screen.getByText("Logout");
+        const button = screen.getByText("Logout " + username);
         expect(button).toBeInTheDocument();
-    });
-
-    test('logout button should redirect to /logout', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
-
-        const button = screen.getByText("Logout");
-
-        expect(button).toBeInTheDocument();
-        expect(button).toHaveAttribute("href", "/logout");
     });
 
     test('navbar logo should redirect to /', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+        render(<SecComNavbar/>);
 
         const logo = screen.getByTestId("SecComLogo");
 
@@ -70,8 +70,8 @@ describe('<SecComNavbar />', () => {
         expect(logo).toHaveAttribute("href", "/");
     });
 
-    test('navbar should have the home link', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+    test('it should have the home link', () => {
+        render(<SecComNavbar/>);
 
         const link = screen.getByText("Home");
 
@@ -79,8 +79,8 @@ describe('<SecComNavbar />', () => {
         expect(link).toHaveAttribute("href", "/");
     });
 
-    test('navbar should have the properties link', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+    test('it should have the properties link', () => {
+        render(<SecComNavbar/>);
 
         const link = screen.getByText("Properties");
 
@@ -88,8 +88,8 @@ describe('<SecComNavbar />', () => {
         expect(link).toHaveAttribute("href", "/properties");
     });
 
-    test('navbar should have the owners link', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+    test('it should have the owners link', () => {
+        render(<SecComNavbar/>);
 
         const link = screen.getByText("Owners");
 
@@ -97,8 +97,17 @@ describe('<SecComNavbar />', () => {
         expect(link).toHaveAttribute("href", "/owners");
     });
 
-    test('navbar should have the account link', () => {
-        render(<ReactKeycloakProvider authClient={keycloak}><SecComNavbar/></ReactKeycloakProvider>);
+    test('it should have the history link', () => {
+        render(<SecComNavbar/>);
+
+        const link = screen.getByText("History");
+
+        expect(link).toBeInTheDocument();
+        expect(link).toHaveAttribute("href", "/history");
+    });
+
+    test('it should have the account link', () => {
+        render(<SecComNavbar/>);
 
         const link = screen.getByText("Account");
 
@@ -106,4 +115,3 @@ describe('<SecComNavbar />', () => {
         expect(link).toHaveAttribute("href", "/account");
     });
 });
- */

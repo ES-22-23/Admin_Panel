@@ -2,7 +2,7 @@ import axios from "axios";
 import keycloak from "../Keycloak";
 
 // const apiAddress = process.env.REACT_APP_API_URL + "/api";
-const apiAddress = "http://management.api.hgsoft.me:8082";
+const apiAddress = "http://scss.hgsoft.me:8082";
 
 // Owner functions
 async function getOwners() {
@@ -133,6 +133,12 @@ async function deleteAlarm(alarmId) {
     });
 }
 
+async function getActions() {
+    return await axios.get(apiAddress + "/actions", {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
 
 export {
     getOwners,
@@ -155,4 +161,5 @@ export {
     createAlarm,
     updateAlarm,
     deleteAlarm,
+    getActions
 };
