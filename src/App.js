@@ -9,22 +9,23 @@ import {
 import {createBrowserHistory} from "history";
 
 import Container from "react-bootstrap/Container";
+import {Spinner} from "react-bootstrap";
 
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
 import Home from "./components/Home/Home";
 import Authentication from "./components/Authentication/Authentication";
-
 import PrivateRoute from "./helpers/PrivateRoute";
 import {useKeycloak} from "@react-keycloak/web";
-import {Spinner} from "react-bootstrap";
 import Account from "./components/Account/Account";
 import Owners from "./components/Owners/Owners";
 import OwnerProperties from "./components/OwnerProperties/OwnerProperties";
 import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
 import History from "./components/History/History";
+import NewOwners from "./components/NewOwners/NewOwners";
 
 import {Flip, ToastContainer} from "react-toastify";
+
 
 function App() {
 
@@ -94,6 +95,7 @@ function App() {
                     <Route path="/account" element={<PrivateRoute><Account/></PrivateRoute>}></Route>
                     <Route path="/owners" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
                     <Route path="/owners/:username" element={<PrivateRoute><Owners/></PrivateRoute>}></Route>
+                    <Route path="/new/owners" element={<PrivateRoute><NewOwners/></PrivateRoute>}></Route>
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>

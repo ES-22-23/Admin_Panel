@@ -2,7 +2,7 @@ import React from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Card, Col} from "react-bootstrap";
-import {BsEnvelopeFill, BsFillPersonLinesFill} from "react-icons/bs";
+import {BsEnvelopeFill, BsFillPersonCheckFill, BsFillPersonLinesFill} from "react-icons/bs";
 
 import {useKeycloak} from "@react-keycloak/web";
 
@@ -21,7 +21,7 @@ const Account = () => {
                             <h5 className="p-4  mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.name}</h5>
                         </Col>
                         <Col className="my-3 col-6">
-                            <h3><BsEnvelopeFill/> Username</h3>
+                            <h3><BsFillPersonCheckFill/> Username</h3>
                             <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.preferred_username}</h5>
                         </Col>
                         <Col className="my-3">
