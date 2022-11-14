@@ -20,31 +20,37 @@ const OwnerProperties = () => {
             setOwner(response.data);
         }).catch((error) => {
             console.log(error);
-            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [{"id": 1}]});
+            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [1]});
         });
     }, [username]);
 
     useEffect(() => {
         if (owner !== undefined) {
 
-            let properties = [];
-
             // Obtain property details
             for (let idx in owner.properties) {
                 const property = owner.properties[idx];
-                getProperty(property.id).then((response) => {
-                    properties.push(response.data);
+                getProperty(property).then((response) => {
+                    setAllProperties(allProperties => [...allProperties, response.data]);
+
                 }).catch((error) => {
                     console.log(error);
-                    // properties.push({"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-                    //     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]});
+
+                    const mockProperty = {
+                        "id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
+                        "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]
+                    };
+
+                    if (!allProperties.includes(mockProperty))
+                        setAllProperties(allProperties => [...allProperties, mockProperty]);
                 });
             }
-
-            setAllProperties(properties);
-            setProperties(properties);
         }
     }, [owner]);
+
+    useEffect(() => {
+        setProperties(allProperties);
+    }, [allProperties]);
 
     const handleSearch = (search) => {
         if (search !== "") {
@@ -55,13 +61,15 @@ const OwnerProperties = () => {
 
     let propertiesPanels = [];
     for (let idx in properties) {
-        const property = properties[idx]
+        const property = properties[idx];
         propertiesPanels.push(
             <Col className="mb-4 col-lg-3 col-6" key={property.id}>
                 <PropertyCard property={property}/>
             </Col>
         );
     }
+
+    console.log(propertiesPanels);
 
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="OwnerProperties">
