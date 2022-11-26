@@ -26,6 +26,7 @@ import NewOwners from "./components/NewOwners/NewOwners";
 import Alarms from "./components/Alarms/Alarms";
 
 import {Flip, ToastContainer} from "react-toastify";
+import Cameras from "./components/Cameras/Cameras";
 
 
 function App() {
@@ -101,6 +102,7 @@ function App() {
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>
                     <Route path="/alarms" element={<PrivateRoute><Alarms/></PrivateRoute>}></Route>
+                    <Route path="/cameras" element={<PrivateRoute><Cameras/></PrivateRoute>}></Route>
                     <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>

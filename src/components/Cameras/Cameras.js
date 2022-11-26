@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
-import './Alarms.css';
+import './Cameras.css';
+import {getServices} from "../../utils/ServiceRegistryHandler";
+import {toast} from "react-toastify";
+import {Col} from "react-bootstrap";
+import ServiceCard from "../ServiceCard/ServiceCard";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import SearchBar from "../SearchBar/SearchBar";
-import {Col} from "react-bootstrap";
-import {getServices} from "../../utils/ServiceRegistryHandler";
-import {toast} from "react-toastify";
-import ServiceCard from "../ServiceCard/ServiceCard";
 
-const Alarms = () => {
+const Cameras = () => {
 
-    const [allAlarms, setAllAlarms] = React.useState([]);
-    const [alarms, setAlarms] = React.useState([]);
+    const [allCameras, setAllCameras] = React.useState([]);
+    const [cameras, setCameras] = React.useState([]);
 
     useEffect(() => {
         getServices().then((response) => {
-            // Filter by Alarms
-            setAllAlarms(response.data.filter(service => service.componentType === "ALARM"));
+            // Filter by Cameras
+            setAllCameras(response.data.filter(service => service.componentType === "CAMERA"));
 
         }).catch((error) => {
             console.log(error);
@@ -62,48 +62,48 @@ const Alarms = () => {
                 ]
             };
 
-            setAllAlarms(mockResponse.registeredServices.filter(service => service.componentType === "ALARM"));
+            setAllCameras(mockResponse.registeredServices.filter(service => service.componentType === "CAMERA"));
         });
     }, []);
 
     useEffect(() => {
-        setAlarms(allAlarms);
-    },  [allAlarms]);
+        setCameras(allCameras);
+    },  [allCameras]);
 
     const handleSearch = (search) => {
         if (search !== "") {
-            setAlarms(allAlarms.filter(alarm => alarm.id.toLowerCase().startsWith(search.toLowerCase())
-                || alarm.componentName.toLowerCase().includes(search.toLowerCase())));
+            setCameras(allCameras.filter(camera => camera.id.toLowerCase().startsWith(search.toLowerCase())
+                || camera.componentName.toLowerCase().includes(search.toLowerCase())));
         } else {
-            setAlarms(allAlarms);
+            setCameras(allCameras);
         }
     };
 
-    let alarmsPanels = [];
-    for (let idx in alarms) {
-        const alarm = alarms[idx];
-        alarmsPanels.push(
-            <Col className="mb-4 col-lg-3 col-6" key={alarm.id}>
-                <ServiceCard service={alarm} componentType={alarm.componentType}/>
+    let camerasPanels = [];
+    for (let idx in cameras) {
+        const camera = cameras[idx];
+        camerasPanels.push(
+            <Col className="mb-4 col-lg-3 col-6" key={camera.id}>
+                <ServiceCard service={camera} componentType={camera.componentType}/>
             </Col>
         );
     }
 
     return (
-        <Container className="text-center justify-content-center d-flex py-5" data-testid="Alarms">
+        <Container className="text-center justify-content-center d-flex py-5" data-testid="Cameras">
             <Row className="w-100">
                 <SearchBar handleSearch={handleSearch.bind(this)}/>
 
                 <Row className="justify-content-start d-flex">
-                    {alarmsPanels}
+                    {camerasPanels}
                 </Row>
             </Row>
         </Container>
     );
 }
 
-Alarms.propTypes = {};
+Cameras.propTypes = {};
 
-Alarms.defaultProps = {};
+Cameras.defaultProps = {};
 
-export default Alarms;
+export default Cameras;

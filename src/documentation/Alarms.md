@@ -3,11 +3,11 @@
 ## Path
 src/components/Alarms/Alarms.js
 
-# Child Components
+## Child Components
 
 ```js
-import AlarmCard from "../AlarmCard/AlarmCard";
-<AlarmCard alarm={alarm} />
+import ServiceCard from "../ServiceCard/ServiceCard";
+<ServiceCard service={alarm} componentType={alarm.componentType}/>
 ```
 
 ## Props
