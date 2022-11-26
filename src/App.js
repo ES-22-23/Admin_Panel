@@ -23,8 +23,10 @@ import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
 import History from "./components/History/History";
 import NewOwners from "./components/NewOwners/NewOwners";
+import Alarms from "./components/Alarms/Alarms";
 
 import {Flip, ToastContainer} from "react-toastify";
+import Cameras from "./components/Cameras/Cameras";
 
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
     if (!initialized) {
         return (
             <Container className="p-0 text-center align-items-center justify-content-center d-flex" style={{
-                backgroundImage: "url(/Background2.jpg)",
+                backgroundImage: "url(/BackgroundRedWhite2.jpg)",
                 backgroundSize: "cover",
                 minHeight: "100vh",
                 minWidth: "100vw"
@@ -49,7 +51,7 @@ function App() {
     if (!keycloak.authenticated) {
         return (
             <Container className="p-0" style={{
-                backgroundImage: "url(/Background2.jpg)",
+                backgroundImage: "url(/BackgroundRedWhite2.jpg)",
                 backgroundSize: "cover",
                 minHeight: "100vh",
                 maxWidth: "100vw"
@@ -83,7 +85,7 @@ function App() {
 
     return (
         <Container className="p-0" style={{
-            backgroundImage: "url(/Background2.jpg)",
+            backgroundImage: "url(/BackgroundRedWhite2.jpg)",
             backgroundSize: "cover",
             minHeight: "100vh",
             maxWidth: "100vw"
@@ -99,6 +101,8 @@ function App() {
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>
+                    <Route path="/alarms" element={<PrivateRoute><Alarms/></PrivateRoute>}></Route>
+                    <Route path="/cameras" element={<PrivateRoute><Cameras/></PrivateRoute>}></Route>
                     <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>

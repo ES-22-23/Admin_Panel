@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
 import {Button, Card, Col, Form} from "react-bootstrap";
@@ -6,8 +6,8 @@ import Row from "react-bootstrap/Row";
 
 const SearchBar = (props) => {
 
-    const [search, setSearch] = React.useState("");
-    const [searchBy, setSearchBy] = React.useState("");
+    const [search, setSearch] = useState("");
+    const [searchBy, setSearchBy] = useState("");
 
     const handleSearch = () => {
         // console.log(search);
@@ -19,7 +19,9 @@ const SearchBar = (props) => {
     return (
         <Row className="my-4 justify-content-start d-flex" data-testid="SearchBar">
             <Col className="col-lg-3 col-7 justify-content-start d-flex mb-3">
-                <Button variant="danger" style={{width: "50%"}} href={props.addNew}>Add New</Button>
+                {props.addNew !== undefined &&
+                    <Button variant="danger" style={{width: "50%"}} href={props.addNew}>Add New</Button>
+                }
             </Col>
             <Col className="col-6 mb-3">
                 <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.80)", textAlign: "start"}}>
@@ -59,7 +61,7 @@ SearchBar.propTypes = {
 
 SearchBar.defaultProps = {
     handleSearch: () => {},
-    addNew: "/",
+    addNew: undefined,
 };
 
 export default SearchBar;

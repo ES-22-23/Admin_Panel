@@ -70,7 +70,7 @@ const History = () => {
         actionsPanels.push(
             <Card className="my-2" style={{backgroundColor: "rgba(0,0,0,0.60)"}} key={action.id} data-testid={action.id}>
                 <Card.Body>
-                    <Card.Title><span style={{color: "#DC3545", fontSize: "85%"}}>{action.action_type}</span> {action.entity_type} {action.entity_id}</Card.Title>
+                    <Card.Title><span style={{color: "#ffc400", fontSize: "85%"}}>{action.action_type}</span> {action.entity_type} {action.entity_id}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{action.date.replace("T", " ")}</Card.Subtitle>
                     <Card.Text>By {action.admin}</Card.Text>
                 </Card.Body>

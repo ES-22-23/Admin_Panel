@@ -1,0 +1,9 @@
+.CardBlock {}
+
+.cardBlockTitle {
+    cursor: pointer;
+}
+
+.cardBlockTitle:hover .cardBlockArrow {
+    color: rgb(255,196,0);
+}

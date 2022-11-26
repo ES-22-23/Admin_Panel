@@ -69,8 +69,6 @@ const OwnerProperties = () => {
         );
     }
 
-    console.log(propertiesPanels);
-
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="OwnerProperties">
             <Row className="w-100">

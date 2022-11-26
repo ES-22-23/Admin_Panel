@@ -1,0 +1,11 @@
+.cardHidden {
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.cardItem:hover .cardHidden {
+    opacity: 1;
+    height: auto;
+}
