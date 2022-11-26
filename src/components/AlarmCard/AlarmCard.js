@@ -19,6 +19,9 @@ const AlarmCard = (props) => {
         return date.toLocaleString();
     }
 
+    if (!alarm)
+        return <div data-testid="AlarmCard"></div>;
+
     const identification = [{title: "Name", content: alarm.componentName}];
 
     const availability = [{title: "Availability", content: alarm.componentAvailability.availability},
@@ -47,6 +50,8 @@ AlarmCard.propTypes = {
     alarm: PropTypes.object
 };
 
-AlarmCard.defaultProps = {};
+AlarmCard.defaultProps = {
+    alarm: null
+};
 
 export default AlarmCard;

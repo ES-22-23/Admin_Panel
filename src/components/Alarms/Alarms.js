@@ -79,7 +79,7 @@ const Alarms = () => {
     }
 
     return (
-        <Container className="text-center justify-content-center d-flex py-5" data-testid="Owners">
+        <Container className="text-center justify-content-center d-flex py-5" data-testid="Alarms">
             <Row className="w-100">
                 <SearchBar handleSearch={handleSearch.bind(this)}/>
 

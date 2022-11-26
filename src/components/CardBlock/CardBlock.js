@@ -25,7 +25,7 @@ const CardBlock = (props) => {
     }
 
     return (
-        <Row className="mt-3 mx-0 p-0">
+        <Row className="mt-3 mx-0 p-0" data-testid="CardBlock">
             <h5 onClick={() => setHideContent(!hideContent)} className="cardBlockTitle">
                 {hideContent ? <FaArrowRight className="cardBlockArrow" /> : <FaArrowDown className="cardBlockArrow" />} {title}
             </h5>
