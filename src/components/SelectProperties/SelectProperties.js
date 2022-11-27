@@ -38,7 +38,7 @@ const SelectProperties = (props) => {
     useEffect(() => {
         if (search !== "") {
             setProperties(allProperties.filter(property => property.name.toLowerCase().includes(search.toLowerCase()) ||
-                property.address.toLowerCase().includes(search.toLowerCase()) || property.owner.toLowerCase().includes(search.toLowerCase())));
+                property.address.toLowerCase().includes(search.toLowerCase()) || property.owner.username.toLowerCase().includes(search.toLowerCase())));
         } else { setProperties(allProperties); }
     }, [search]);
 
@@ -101,7 +101,7 @@ const SelectProperties = (props) => {
                 <h6 className="mx-0">{property.name}</h6>
                 <span className="m-0 cardHidden"
                       style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Property Owner</span>
-                <h6 className="m-0">{property.owner}</h6>
+                <h6 className="m-0">{property.owner.username}</h6>
             </Card>
         );
     }
