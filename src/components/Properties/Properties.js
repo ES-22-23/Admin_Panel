@@ -18,9 +18,9 @@ const Properties = () => {
         }).catch((error) => {
             console.log(error);
             setAllProperties([
-                {"id": 1, "name": "Property 1", "address": "Address 1", "owner": "John",
+                {"id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
                     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]},
-                {"id": 2, "name": "Property 2", "address": "Address 2", "owner": "Luna",
+                {"id": 2, "name": "Property 2", "address": "Address 2", "owner": {"username": "Luna"},
                     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
             ]);
         });
