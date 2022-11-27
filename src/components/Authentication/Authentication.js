@@ -17,11 +17,10 @@ const Authentication = () => {
                     <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                         <h2>SecCom</h2>
                         <h5>Smart Security</h5>
-                        <h6 className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis ligula non magna
-                            tristique, congue aliquam velit fringilla. Nullam orci enim, tincidunt quis euismod eu, viverra
-                            eget erat. Suspendisse potenti. Aenean volutpat justo et lacus egestas ultrices. In hac
-                            habitasse platea dictumst. Nam porta leo quis est rhoncus, eget fermentum leo varius. Aenean
-                            eleifend vestibulum quam, sed aliquam libero volutpat nec.
+                        <h6 className="mt-4">SecCom Smart Security System is a Smart CCTV system with built-in intruder detection and alarms for enterprises.</h6>
+                        <h6>
+                            This system allows enterprises to create and run a smart CCTV system to improve the security of their buildings. It includes
+                            Intruder detection powered by AI/ML modules and Intrusion Alarms triggered when an intruder is detected.
                         </h6>
                     </Card>
                     <Button variant="danger" className="px-3 w-50 mt-5" onClick={() => keycloak.login()}>Login</Button>

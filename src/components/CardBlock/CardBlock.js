@@ -21,7 +21,11 @@ const CardBlock = (props) => {
     let items = [];
     for (let idx in content) {
         const blockItem = content[idx];
-        items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}/>);
+        if (props.deleteFunction)
+            items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}
+                deleteFunction={props.deleteFunction}/>);
+        else
+            items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}/>);
     }
 
     return (
@@ -38,7 +42,9 @@ CardBlock.propTypes = {
     /** Title of the card block */
     title: PropTypes.string,
     /** Items of the card block */
-    content: PropTypes.array
+    content: PropTypes.array,
+    /** Function to delete an item */
+    deleteFunction: PropTypes.func
 };
 
 CardBlock.defaultProps = {};
