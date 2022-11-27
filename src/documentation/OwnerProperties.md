@@ -3,7 +3,7 @@
 ## Path
 src/components/OwnerProperties/OwnerProperties.js
 
-# Child Components
+## Child Components
 
 ```js
 import PropertyCard from "../PropertyCard/PropertyCard";

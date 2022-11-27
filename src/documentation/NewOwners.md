@@ -3,7 +3,7 @@
 ## Path
 src/components/NewOwners/NewOwners.js
 
-# Child Components
+## Child Components
 N/A
 
 ## Props

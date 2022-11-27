@@ -3,7 +3,7 @@
 ## Path
 src/components/History/History.js
 
-# Child Components
+## Child Components
 N/A
 
 ## Props

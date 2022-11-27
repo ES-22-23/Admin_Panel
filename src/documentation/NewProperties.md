@@ -3,7 +3,7 @@
 ## Path
 src/components/NewProperties/NewProperties.js
 
-# Child Components
+## Child Components
 
 ```js
 import AutoComplete from "../AutoComplete/AutoComplete";

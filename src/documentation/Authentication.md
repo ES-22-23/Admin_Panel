@@ -3,7 +3,7 @@
 ## Path
 src/components/Authentication/Authentication.js
 
-# Child Components
+## Child Components
 
 ```js
 import SecComCarousel from "../SecComCarousel/SecComCarousel";
