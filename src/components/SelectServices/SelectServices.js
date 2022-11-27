@@ -198,7 +198,7 @@ const SelectServices = (props) => {
     }
 
     return (
-        <Card className="p-5 text-white shadow"
+        <Card className="p-5 text-white shadow" data-testid="SelectServices"
               style={{
                   border: "none",
                   borderRadius: "20px",

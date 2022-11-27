@@ -21,7 +21,7 @@ const NewServices = () => {
         if (currentService === undefined || currentProperty === undefined) {
             toast.error("Please select a service and a property.");
         } else {
-
+            toast.success("Service registered successfully.");
         }
     }
 
@@ -32,7 +32,7 @@ const NewServices = () => {
                     <Col className="col-5 text-start"><Button variant="danger" className="my-4 w-50 py-2" href="/services">Go Back</Button></Col>
                     <Col className="text-end">
                         <Button variant="danger" className="my-4 w-50 py-2" disabled={currentService === undefined || currentProperty === undefined}
-                                onClick={(event) => handleSubmit(event)}>Register Service
+                                onClick={handleSubmit.bind(this)}>Register Service
                         </Button>
                     </Col>
                 </Row>
