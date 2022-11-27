@@ -1,0 +1,10 @@
+.SelectProperties {}
+
+.scrollable {
+    overflow-y: scroll;
+    max-height: 30vh;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 0;
+}

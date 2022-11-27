@@ -10,6 +10,7 @@ import {createBrowserHistory} from "history";
 
 import Container from "react-bootstrap/Container";
 import {Spinner} from "react-bootstrap";
+import {Flip, ToastContainer} from "react-toastify";
 
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
 import Home from "./components/Home/Home";
@@ -23,10 +24,8 @@ import Properties from "./components/Properties/Properties";
 import NewProperties from "./components/NewProperties/NewProperties";
 import History from "./components/History/History";
 import NewOwners from "./components/NewOwners/NewOwners";
-import Alarms from "./components/Alarms/Alarms";
-
-import {Flip, ToastContainer} from "react-toastify";
-import Cameras from "./components/Cameras/Cameras";
+import NewServices from "./components/NewServices/NewServices";
+import Services from "./components/Services/Services";
 
 
 function App() {
@@ -101,8 +100,9 @@ function App() {
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>
-                    <Route path="/alarms" element={<PrivateRoute><Alarms/></PrivateRoute>}></Route>
-                    <Route path="/cameras" element={<PrivateRoute><Cameras/></PrivateRoute>}></Route>
+                    <Route path="/services" element={<PrivateRoute><Services/></PrivateRoute>}></Route>
+                    <Route path="/services/:componentType" element={<PrivateRoute><Services/></PrivateRoute>}></Route>
+                    <Route path="/new/services" element={<PrivateRoute><NewServices/></PrivateRoute>}></Route>
                     <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>

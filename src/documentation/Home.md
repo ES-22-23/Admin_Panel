@@ -3,7 +3,7 @@
 ## Path
 src/components/Home/Home.js
 
-# Child Components
+## Child Components
 
 ```js
 import SecComCarousel from "../SecComCarousel/SecComCarousel";
