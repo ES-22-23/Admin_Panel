@@ -23,7 +23,7 @@ const PropertyCard = (props) => {
     const details = [
         {title: "Name", content: property.name},
         {title: "Address", content: property.address},
-        {title: "Owner", content: property.owner}
+        {title: "Owner", content: property.owner.username}
     ];
 
     const alarms = [];
@@ -74,7 +74,7 @@ const PropertyCard = (props) => {
                     <CardBlock title="Alarms" content={alarms} deleteFunction={deletePropertyAlarm.bind(this)}/>
                     <CardBlock title="Cameras" content={cameras} deleteFunction={deletePropertyCamera.bind(this)}/>
                     <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}}
-                            onClick={() => window.location.href = "/owners/" + property.owner}>View Owner</Button>
+                            onClick={() => window.location.href = "/owners/" + property.owner.username}>View Owner</Button>
                 </Row>
             </Row>
         </Card>
