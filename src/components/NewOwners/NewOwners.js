@@ -36,7 +36,7 @@ const NewOwners = () => {
         <Container className="text-center justify-content-center d-flex py-5" data-testid="NewOwners">
             <Row className="w-50">
                 <Button variant="danger" className="my-4 w-25 py-2" href="/owners">Go Back</Button>
-                <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}} data-testid="PropertyCard">
+                <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                     <Row className="justify-content-center d-flex">
                         <Form>
                             <Form.Group className="mb-4" controlId="formName">
@@ -67,7 +67,7 @@ const NewOwners = () => {
                                               style={{backgroundColor: "rgba(0,0,0,0.60)", border: "none"}}
                                               onChange={(e) => setEmail(e.target.value)}/>
                             </Form.Group>
-                            <Button variant="danger" className="w-50 py-2" onClick={handleSubmit.bind(this)}>Save Owner</Button>
+                            <Button variant="danger" className="w-50 py-2" onClick={handleSubmit.bind(this)}>Register Owner</Button>
                         </Form>
                     </Row>
                 </Card>

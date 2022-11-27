@@ -21,7 +21,7 @@ describe('<NewOwners />', () => {
         test('it should notify unsuccessful submission', () => {
             render(<NewOwners/>);
 
-            const button = screen.getByText('Save Owner');
+            const button = screen.getByText('Register Owner');
             fireEvent.click(button);
 
             expect(toast.success).not.toHaveBeenCalled();
