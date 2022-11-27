@@ -43,7 +43,9 @@ CardItem.propTypes = {
     /** Title of the card item */
     title: PropTypes.string,
     /** Content of the card item */
-    content: PropTypes.any
+    content: PropTypes.any,
+    /** Function to delete an item */
+    deleteFunction: PropTypes.func
 };
 
 CardItem.defaultProps = {};

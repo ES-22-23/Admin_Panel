@@ -42,7 +42,9 @@ CardBlock.propTypes = {
     /** Title of the card block */
     title: PropTypes.string,
     /** Items of the card block */
-    content: PropTypes.array
+    content: PropTypes.array,
+    /** Function to delete an item */
+    deleteFunction: PropTypes.func
 };
 
 CardBlock.defaultProps = {};
