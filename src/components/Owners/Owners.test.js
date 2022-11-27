@@ -17,5 +17,13 @@ describe('<Owners />', () => {
 
         const button = screen.getByText("Add New");
         expect(button).toBeInTheDocument();
+        expect(button).toHaveAttribute("href", "/new/owners");
+    });
+
+    test('it should have the search bar', () => {
+        render(<Owners/>);
+
+        const searchBar = screen.getByTestId('SearchBar');
+        expect(searchBar).toBeInTheDocument();
     });
 });

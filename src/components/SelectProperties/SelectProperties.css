@@ -2,7 +2,7 @@
 
 .scrollable {
     overflow-y: scroll;
-    max-height: 35vh;
+    max-height: 30vh;
 }
 
 .scrollable::-webkit-scrollbar {

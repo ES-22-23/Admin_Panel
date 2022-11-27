@@ -17,6 +17,15 @@ describe('<NewServices />', () => {
         expect(newServices).toBeInTheDocument();
     });
 
+    test('it should have a button to go back', () => {
+        render(<NewServices/>);
+
+        const goBackButton = screen.getByText('Go Back');
+
+        expect(goBackButton).toBeInTheDocument();
+        expect(goBackButton).toHaveAttribute('href', '/services');
+    });
+
     describe('when the form is submitted without valid input', () => {
         test('it should notify unsuccessful submission', () => {
             render(<NewServices/>);
@@ -25,7 +34,6 @@ describe('<NewServices />', () => {
             fireEvent.click(button);
 
             expect(toast.success).not.toHaveBeenCalled();
-            // expect(toast.error).toHaveBeenCalled();
         });
     });
 });

@@ -17,6 +17,15 @@ describe('<NewProperties />', () => {
         expect(newProperties).toBeInTheDocument();
     });
 
+    test('it should have a button to go back', () => {
+        render(<NewProperties/>);
+
+        const goBackButton = screen.getByText('Go Back');
+
+        expect(goBackButton).toBeInTheDocument();
+        expect(goBackButton).toHaveAttribute('href', '/properties');
+    });
+
     describe('when the form is submitted without valid input', () => {
         test('it should notify unsuccessful submission', () => {
             render(<NewProperties/>);

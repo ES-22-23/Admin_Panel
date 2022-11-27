@@ -118,15 +118,15 @@ const SelectServices = (props) => {
     let servicePanel;
     if (currentService !== undefined) {
         servicePanel =
-            <Card className="p-4 my-2 mx-0 cardItem" style={{
+            <Card className="p-4 my-2 mx-0 cardItem" data-testid="SelectedService" style={{
                 borderRadius: "20px",
                 borderWidth: "2px",
                 borderColor: "#ffc400",
                 backgroundColor: "rgba(0,0,0,0.60)"
             }}>
-                {currentService.componentType === "CAMERA" &&
-                    <RiAlarmWarningFill size={30}/>}
                 {currentService.componentType === "ALARM" &&
+                    <RiAlarmWarningFill size={30}/>}
+                {currentService.componentType === "CAMERA" &&
                     <BsCameraVideoFill size={30}/>}
                 <span className="m-0 mt-2 cardHidden"
                       style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Component ID</span>
@@ -138,7 +138,7 @@ const SelectServices = (props) => {
         ;
     } else {
         servicePanel =
-            <Card className="p-4 my-2 mx-0" style={{
+            <Card className="p-4 my-2 mx-0" data-testid="SelectedService" style={{
                 borderRadius: "20px",
                 borderWidth: "2px",
                 borderColor: "#ffc400",

@@ -28,7 +28,7 @@ const Services = () => {
 
             // Filter Services
             if (currentType)
-                setAllServices(response.data.registeredServices.filter(service => service.componentType === componentType));
+                setAllServices(response.data.registeredServices.filter(service => service.componentType === currentType));
             else
                 setAllServices(response.data.registeredServices);
 
@@ -77,7 +77,7 @@ const Services = () => {
             };
 
             if (componentType)
-                setAllServices(mockResponse.registeredServices.filter(service => service.componentType === componentType));
+                setAllServices(mockResponse.registeredServices.filter(service => service.componentType === currentType));
             else
                 setAllServices(mockResponse.registeredServices);
         });

@@ -26,8 +26,6 @@ const SelectProperties = (props) => {
                 {"id": 1, "name": "Property 1", "address": "Address 1", "owner": "John",
                     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]},
                 {"id": 2, "name": "Property 2", "address": "Address 2", "owner": "Luna",
-                    "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]},
-                {"id": 2, "name": "Property 2", "address": "Address 2", "owner": "Luna",
                     "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
             ]);
         });
@@ -57,7 +55,7 @@ const SelectProperties = (props) => {
     let propertyPanel;
     if (currentProperty !== undefined) {
         propertyPanel =
-            <Card className="p-4 my-2 mx-0 cardItem" style={{
+            <Card className="p-4 my-2 mx-0 cardItem" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
                 borderWidth: "2px",
                 borderColor: "#ffc400",
@@ -76,7 +74,7 @@ const SelectProperties = (props) => {
         ;
     } else {
         propertyPanel =
-            <Card className="p-4 my-2 mx-0" style={{
+            <Card className="p-4 my-2 mx-0" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
                 borderWidth: "2px",
                 borderColor: "#ffc400",
