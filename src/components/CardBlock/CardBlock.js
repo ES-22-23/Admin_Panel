@@ -21,7 +21,11 @@ const CardBlock = (props) => {
     let items = [];
     for (let idx in content) {
         const blockItem = content[idx];
-        items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}/>);
+        if (props.deleteFunction)
+            items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}
+                deleteFunction={props.deleteFunction}/>);
+        else
+            items.push(<CardItem title={blockItem.title} content={blockItem.content} key={blockItem.title}/>);
     }
 
     return (

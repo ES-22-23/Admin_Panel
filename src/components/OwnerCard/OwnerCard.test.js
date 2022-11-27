@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import OwnerCard from './OwnerCard';
 
@@ -33,29 +33,38 @@ describe('<OwnerCard />', () => {
 
         render(<OwnerCard owner={owner}/>);
 
-        const propertyCard = screen.getByTestId('OwnerUsername');
+        const titleUsername = screen.getByText("Username");
+        const ownerUsername = screen.getByText(owner.username);
 
-        expect(propertyCard).toBeInTheDocument();
-        expect(propertyCard).toHaveTextContent(owner.username);
+        expect(titleUsername).toBeInTheDocument();
+        expect(ownerUsername).toBeInTheDocument();
     });
 
     test('it should display owner name', () => {
 
         render(<OwnerCard owner={owner}/>);
 
-        const propertyCard = screen.getByTestId('OwnerName');
+        // View the content
+        const title = screen.getByText('Details');
+        fireEvent.click(title);
 
-        expect(propertyCard).toBeInTheDocument();
-        expect(propertyCard).toHaveTextContent(owner.name);
+        const ownerName = screen.getByText(owner.name);
+
+        expect(title).toBeInTheDocument();
+        expect(ownerName).toBeInTheDocument();
     });
 
     test('it should display owner email', () => {
 
         render(<OwnerCard owner={owner}/>);
 
-        const propertyCard = screen.getByTestId('OwnerEmail');
+        // View the content
+        const title = screen.getByText('Details');
+        fireEvent.click(title);
 
-        expect(propertyCard).toBeInTheDocument();
-        expect(propertyCard).toHaveTextContent(owner.email);
+        const ownerEmail = screen.getByText(owner.email);
+
+        expect(title).toBeInTheDocument();
+        expect(ownerEmail).toBeInTheDocument();
     });
 });
