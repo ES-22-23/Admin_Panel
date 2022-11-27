@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import PropertyCard from './PropertyCard';
 
 const property = {
-    "id": 1, "name": "Property 1", "address": "Address 1", "owner": "John",
+    "id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
     "cameras": [{"id": "36e25c8c-165a-445a-b062-9b7a16195dd6"}], "alarms": [{"id": "135c8sdffd-9b7a16195dd6"}]
 };
 
@@ -72,7 +72,7 @@ describe('<PropertyCard />', () => {
         const title = screen.getByText('Details');
         fireEvent.click(title);
 
-        const propertyOwner = screen.getByText(property.owner);
+        const propertyOwner = screen.getByText(property.owner.username);
 
         expect(title).toBeInTheDocument();
         expect(propertyOwner).toBeInTheDocument();
