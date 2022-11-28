@@ -29,13 +29,13 @@ const PropertyCard = (props) => {
     const alarms = [];
     for (let idx in property.alarms) {
         const alarm = property.alarms[idx];
-        alarms.push({title: "ID", content: alarm.id});
+        alarms.push({title: "ID", content: alarm});
     }
 
     const cameras = [];
     for (let idx in property.cameras) {
         const camera = property.cameras[idx];
-        cameras.push({title: "ID", content: camera.id});
+        cameras.push({title: "ID", content: camera});
     }
 
     const deletePropertyAlarm = (id) => {

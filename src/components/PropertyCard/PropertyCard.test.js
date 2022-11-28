@@ -5,7 +5,7 @@ import PropertyCard from './PropertyCard';
 
 const property = {
     "id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
-    "cameras": [{"id": "36e25c8c-165a-445a-b062-9b7a16195dd6"}], "alarms": [{"id": "135c8sdffd-9b7a16195dd6"}]
+    "cameras": ["36e25c8c-165a-445a-b062-9b7a16195dd6"], "alarms": ["135c8sdffd-9b7a16195dd6"]
 };
 
 describe('<PropertyCard />', () => {
@@ -86,7 +86,7 @@ describe('<PropertyCard />', () => {
         const title = screen.getByText('Cameras');
         fireEvent.click(title);
 
-        const camera = screen.getByText(property.cameras[0].id);
+        const camera = screen.getByText(property.cameras[0]);
 
         expect(title).toBeInTheDocument();
         expect(camera).toBeInTheDocument();
@@ -100,7 +100,7 @@ describe('<PropertyCard />', () => {
             const title = screen.getByText('Alarms');
             fireEvent.click(title);
 
-            const alarm = screen.getByText(property.alarms[0].id);
+            const alarm = screen.getByText(property.alarms[0]);
 
             expect(title).toBeInTheDocument();
             expect(alarm).toBeInTheDocument();
