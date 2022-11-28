@@ -20,7 +20,7 @@ const NewServices = () => {
             toast.error("Please select a service and a property.");
         } else {
             if (currentService.componentType === "CAMERA") {
-                const camera = {"privateId": currentService.id, "propertyName": currentProperty.name, "propertyAddress": currentProperty.address};
+                const camera = {"id": currentService.id, "propertyName": currentProperty.name, "propertyAddress": currentProperty.address};
                 console.log(camera);
                 createCamera(camera).then(() => {
                     toast.success("Camera created successfully.");
