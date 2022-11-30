@@ -55,11 +55,9 @@ const SelectProperties = (props) => {
     let propertyPanel;
     if (currentProperty !== undefined) {
         propertyPanel =
-            <Card className="p-4 my-2 mx-0 cardItem" data-testid="SelectedProperty" style={{
+            <Card className="p-4 my-2 mx-0 cardItem text-white" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
-                borderWidth: "2px",
-                borderColor: "#ffc400",
-                backgroundColor: "rgba(0,0,0,0.60)"
+                backgroundColor: "rgba(0,0,0,0.90)"
             }}>
                 <span className="m-0 cardHidden"
                       style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Property ID</span>
@@ -74,11 +72,9 @@ const SelectProperties = (props) => {
         ;
     } else {
         propertyPanel =
-            <Card className="p-4 my-2 mx-0" data-testid="SelectedProperty" style={{
+            <Card className="p-4 my-2 mx-0 text-white" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
-                borderWidth: "2px",
-                borderColor: "#ffc400",
-                backgroundColor: "rgba(0,0,0,0.60)"
+                backgroundColor: "rgba(0,0,0,0.90)"
             }}>
                 <h6 className="m-0 align-items-center d-flex"><BsQuestionSquareFill size={30} className="me-3"/> Select
                     a Property</h6>
@@ -93,7 +89,7 @@ const SelectProperties = (props) => {
             <Card key={idx} className="p-4 my-2 mx-0 cardItem"
                   style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}
                   onClick={() => handleClick(property)}>
-                <span className="m-0 cardHidden"
+                <span className="m-0 mt-1 cardHidden"
                       style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Property ID</span>
                 <h6 className="mx-0">{property.id}</h6>
                 <span className="m-0 cardHidden"
@@ -147,11 +143,11 @@ const SelectProperties = (props) => {
                         </Col>
                     </Row>
                 </Card>
-                {propertyPanel}
-                <Row className="m-0 p-0 scrollable">
+                <Row className="mx-0 mb-4 p-0 scrollable">
                     {propertiesPanels}
                 </Row>
             </Row>
+            {propertyPanel}
         </Card>
     );
 };
