@@ -26,6 +26,7 @@ import History from "./components/History/History";
 import NewOwners from "./components/NewOwners/NewOwners";
 import NewServices from "./components/NewServices/NewServices";
 import Services from "./components/Services/Services";
+import Intrusions from "./components/Intrusions/Intrusions";
 
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
                     <Route path="/owners/:username/properties" element={<PrivateRoute><OwnerProperties/></PrivateRoute>}></Route>
                     <Route path="/properties" element={<PrivateRoute><Properties/></PrivateRoute>}></Route>
                     <Route path="/new/properties" element={<PrivateRoute><NewProperties/></PrivateRoute>}></Route>
+                    <Route path="/intrusions" element={<PrivateRoute><Intrusions/></PrivateRoute>}></Route>
                     <Route path="/services" element={<PrivateRoute><Services/></PrivateRoute>}></Route>
                     <Route path="/services/:componentType" element={<PrivateRoute><Services/></PrivateRoute>}></Route>
                     <Route path="/new/services" element={<PrivateRoute><NewServices/></PrivateRoute>}></Route>
