@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './IntrusionCard.css';
 import Row from "react-bootstrap/Row";
 import {Button, Card, Col} from "react-bootstrap";
+import {getVideoFile} from "../../utils/ApiHandler";
+import {toast} from "react-toastify";
 
 const IntrusionCard = (props) => {
 
@@ -11,6 +13,33 @@ const IntrusionCard = (props) => {
     useEffect(() => {
         setIntrusion(props.intrusion);
     }, [props.intrusion]);
+
+    const handleDownload = () => {
+        getVideoFile(intrusion.key).then(response => {
+
+            const contentType = response.headers['Content-type'];
+            const filename =  response.headers.get('Content-Disposition').split('attachment; filename=')[1];
+
+            // Binary Large Object (BLOB) is a collection of binary data stored as a single entity.
+            const blob = new Blob([response.data], {type: contentType});
+
+            // We create an object URL for the incoming Blob and tell the browser to download the image with a hidden <a> HTML element.
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+
+            toast.success("Download completed!");
+
+        }).catch(error => {
+            console.log(error);
+            toast.error("Error downloading video.");
+        });
+    }
+
+    const handleSelection = () => {
+        props.handleSelection(intrusion);
+    }
 
     return (
         <Card className="p-5 text-white shadow"
@@ -39,8 +68,8 @@ const IntrusionCard = (props) => {
                 </Col>
                 <Col className="col-3">
                     <Row className="justify-content-center d-flex">
-                        <Button variant="danger" className="w-75 py-2 m-2">View Video</Button>
-                        <Button variant="dark" className="w-75 py-2 m-2">Download Video</Button>
+                        <Button variant="danger" className="w-75 py-2 m-2" onClick={handleSelection}>View Video</Button>
+                        <Button variant="dark" className="w-75 py-2 m-2" onClick={handleDownload}>Download Video</Button>
                     </Row>
                 </Col>
             </Row>
@@ -50,15 +79,19 @@ const IntrusionCard = (props) => {
 
 IntrusionCard.propTypes = {
     /** Intrusion details to be displayed on the card */
-    intrusion: PropTypes.object
+    intrusion: PropTypes.object,
+    /** Function to be called when the View Video button is clicked */
+    handleSelection: PropTypes.func
 };
 
 IntrusionCard.defaultProps = {
     intrusion: {
+        key: "",
         propertyID: "",
         cameraID: "",
         intrusionDate: ""
-    }
+    },
+    handleSelection: () => {}
 };
 
 export default IntrusionCard;

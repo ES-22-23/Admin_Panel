@@ -5,11 +5,14 @@ import Container from "react-bootstrap/Container";
 import IntrusionCard from "../IntrusionCard/IntrusionCard";
 import SearchBar from "../SearchBar/SearchBar";
 import Row from "react-bootstrap/Row";
+import VideoModal from "../VideoModal/VideoModal";
 
 const Intrusions = () => {
 
     const [allIntrusions, setAllIntrusions] = React.useState([]);
     const [intrusions, setIntrusions] = React.useState([]);
+
+    const [selectedIntrusion, setSelectedIntrusion] = React.useState(null);
 
     const convertKey = (key) => {
         const items = key.split('/');
@@ -18,7 +21,7 @@ const Intrusions = () => {
         const cameraId = items[1].replace('cam', '');
         const date = items[2].replace('Video', '');
 
-        return {"propertyID": propertyId, "cameraID": cameraId, "intrusionDate": new Date(date).toLocaleString()};
+        return {"key": key, "propertyID": propertyId, "cameraID": cameraId, "intrusionDate": new Date(date).toLocaleString()};
     }
 
     useEffect(() => {
@@ -61,12 +64,16 @@ const Intrusions = () => {
         } else { setIntrusions(allIntrusions); }
     }
 
+    const handleSelection = (intrusion) => {
+        setSelectedIntrusion(intrusion);
+    }
+
     let intrusionsPanels = [];
     for (let idx in intrusions) {
         const intrusion = intrusions[idx];
         intrusionsPanels.push(
-            <Row className="my-2" key={"Intrusion" + idx}>
-                <IntrusionCard intrusion={intrusion}/>
+            <Row className="my-2" key={intrusion.key}>
+                <IntrusionCard intrusion={intrusion} handleSelection={handleSelection.bind(this)}/>
             </Row>
         );
     }
@@ -79,6 +86,10 @@ const Intrusions = () => {
                 <Row className="justify-content-start d-flex">
                     {intrusionsPanels}
                 </Row>
+
+                {selectedIntrusion !== null &&
+                    <VideoModal intrusion={selectedIntrusion} handleClose={() => setSelectedIntrusion(null)} />
+                }
             </Row>
         </Container>
     );
