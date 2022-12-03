@@ -64,6 +64,10 @@ const PropertyCard = (props) => {
         });
     }
 
+    const deleteCurrentProperty = () => {
+        props.deleteCurrentProperty(property);
+    }
+
     return (
         <Card className="p-5 text-white shadow" style={{border: "none", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}} data-testid="PropertyCard">
             <Row className="justify-content-center d-flex my-0">
@@ -75,6 +79,8 @@ const PropertyCard = (props) => {
                     <CardBlock title="Cameras" content={cameras} deleteFunction={deletePropertyCamera.bind(this)}/>
                     <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}}
                             onClick={() => window.location.href = "/owners/" + property.owner.username}>View Owner</Button>
+                    <Button variant="dark" className="mt-4 p-3" style={{borderRadius: "10px"}}
+                            onClick={deleteCurrentProperty}>Delete Property</Button>
                 </Row>
             </Row>
         </Card>
@@ -84,6 +90,8 @@ const PropertyCard = (props) => {
 PropertyCard.propTypes = {
     /** The property details to display */
     property: PropTypes.object,
+    /** The function to call when the property is deleted */
+    deleteCurrentProperty: PropTypes.func
 };
 
 PropertyCard.defaultProps = {};
