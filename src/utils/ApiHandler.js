@@ -139,6 +139,38 @@ async function getActions() {
     });
 }
 
+// Event functions
+
+async function getVideos() {
+    return await axios.get(apiAddress + "/events", {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getVideosForOwner(username) {
+    return await axios.get(apiAddress + "/events/owner/" + username, {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getVideoForProperty(propertyId) {
+    return await axios.get(apiAddress + "/events/property/" + propertyId, {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getVideoForCamera(cameraId) {
+    return await axios.get(apiAddress + "/events/camera/" + cameraId, {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
+async function getVideoFile(videoKey) {
+    return await axios.get(apiAddress + "/events/" + videoKey, {
+        headers: {'Authorization': 'Bearer ' + keycloak.token}
+    });
+}
+
 
 export {
     getOwners,
@@ -161,5 +193,10 @@ export {
     createAlarm,
     updateAlarm,
     deleteAlarm,
-    getActions
+    getActions,
+    getVideos,
+    getVideosForOwner,
+    getVideoForProperty,
+    getVideoForCamera,
+    getVideoFile
 };

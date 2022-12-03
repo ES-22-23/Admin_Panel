@@ -56,8 +56,8 @@ const Owners = () => {
     for (let idx in owners) {
         const owner = owners[idx]
         ownersPanels.push(
-            <Col className="mb-4 col-lg-3 col-6">
-                <OwnerCard owner={owner} key={owner.username}/>
+            <Col className="mb-4 col-lg-3 col-6" key={owner.username}>
+                <OwnerCard owner={owner}/>
             </Col>
         );
     }

@@ -39,6 +39,7 @@ const SecComNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/" className="px-3" active={url === "/" || url === "/home.feature"}>Home</Nav.Link>
+                        <Nav.Link href="/intrusions" className="px-3" active={url === "/intrusions"}>Intrusions</Nav.Link>
                         <Nav.Link href="/properties" className="px-3" active={url === "/properties"}>Properties</Nav.Link>
                         <Nav.Link href="/owners" className="px-3" active={url === "/owners"}>Owners</Nav.Link>
                         <NavDropdown title="Services" id="Services" active={url === "/services" ||

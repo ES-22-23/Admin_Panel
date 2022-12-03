@@ -118,11 +118,9 @@ const SelectServices = (props) => {
     let servicePanel;
     if (currentService !== undefined) {
         servicePanel =
-            <Card className="p-4 my-2 mx-0 cardItem" data-testid="SelectedService" style={{
+            <Card className="p-4 mt-2 mx-0 cardItem" data-testid="SelectedService" style={{
                 borderRadius: "20px",
-                borderWidth: "2px",
-                borderColor: "#ffc400",
-                backgroundColor: "rgba(0,0,0,0.60)"
+                backgroundColor: "rgba(0,0,0,0.90)"
             }}>
                 {currentService.componentType === "ALARM" &&
                     <RiAlarmWarningFill size={30}/>}
@@ -138,11 +136,10 @@ const SelectServices = (props) => {
         ;
     } else {
         servicePanel =
-            <Card className="p-4 my-2 mx-0" data-testid="SelectedService" style={{
+            <Card className="p-4 mt-2 mx-0" data-testid="SelectedService" style={{
                 borderRadius: "20px",
-                borderWidth: "2px",
-                borderColor: "#ffc400",
-                backgroundColor: "rgba(0,0,0,0.60)"
+
+                backgroundColor: "rgba(0,0,0,0.90)"
             }}>
                 <h6 className="m-0 align-items-center d-flex"><BsQuestionSquareFill size={30} className="me-3"/> Select
                     a Service</h6>
@@ -238,11 +235,11 @@ const SelectServices = (props) => {
                         </Col>
                     </Row>
                 </Card>
-                {servicePanel}
-                <Row className="m-0 p-0 scrollable">
+                <Row className="mx-0 mb-4 p-0 scrollable">
                     {servicesPanels}
                 </Row>
             </Row>
+            {servicePanel}
         </Card>
     );
 }
