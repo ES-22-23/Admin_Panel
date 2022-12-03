@@ -40,7 +40,7 @@ const DeleteModal = (props) => {
 }
 
 DeleteModal.propTypes = {
-    /** Function to be called when the Delete button is clicked or not */
+    /** Function to confirm or cancel deletion */
     handleDelete: PropTypes.func
 };
 
