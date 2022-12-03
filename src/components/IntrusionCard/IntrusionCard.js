@@ -18,7 +18,7 @@ const IntrusionCard = (props) => {
         getVideoFile(intrusion.key).then(response => {
 
             const contentType = response.headers['Content-type'];
-            const filename =  response.headers.get('Content-Disposition').split('attachment; filename=')[1];
+            const filename =  response.headers.get('Content-disposition').split('attachment; filename=')[1];
 
             // Binary Large Object (BLOB) is a collection of binary data stored as a single entity.
             const blob = new Blob([response.data], {type: contentType});

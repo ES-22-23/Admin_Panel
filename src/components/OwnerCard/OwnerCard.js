@@ -14,6 +14,10 @@ const OwnerCard = (props) => {
         setOwner(props.owner);
     }, [props.owner]);
 
+    const deleteCurrentOwner = () => {
+        props.deleteCurrentOwner(owner);
+    }
+
     if (owner === undefined) {
         return <div data-testid="OwnerCard"></div>
     }
@@ -35,6 +39,8 @@ const OwnerCard = (props) => {
                     <Button variant="danger" className="mt-4 p-3" style={{borderRadius: "10px"}}
                             onClick={() => window.location.href = "/owners/" + owner.username + "/properties"}>View
                         Properties</Button>
+                    <Button variant="dark" className="mt-4 p-3" style={{borderRadius: "10px"}}
+                            onClick={deleteCurrentOwner}>Delete Owner</Button>
                 </Row>
             </Row>
         </Card>
@@ -43,7 +49,9 @@ const OwnerCard = (props) => {
 
 OwnerCard.propTypes = {
     /** Owner details to be displayed on the card */
-    owner: PropTypes.object
+    owner: PropTypes.object,
+    /** Function to delete the current owner */
+    deleteCurrentOwner: PropTypes.func
 };
 
 OwnerCard.defaultProps = {

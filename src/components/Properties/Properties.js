@@ -1,16 +1,20 @@
 import React, {useEffect} from 'react';
 import './Properties.css';
-import {getProperties} from "../../utils/ApiHandler";
+import {deleteProperty, getProperties} from "../../utils/ApiHandler";
 import {Col} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import PropertyCard from "../PropertyCard/PropertyCard";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import {toast} from "react-toastify";
 
 const Properties = () => {
 
     const [allProperties, setAllProperties] = React.useState([]);
     const [properties, setProperties] = React.useState([]);
+
+    const [currentProperty, setCurrentProperty] = React.useState(null);
 
     useEffect(() => {
         getProperties().then((response) => {
@@ -38,12 +42,27 @@ const Properties = () => {
         } else { setProperties(allProperties); }
     };
 
+    const handleDelete = (deleteOption) => {
+        if (deleteOption) {
+            deleteProperty(currentProperty.id).then(() => {
+                toast.success("Property deleted successfully.");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }).catch((error) => {
+                console.log(error);
+                toast.error("Error deleting property " + currentProperty.id + ".");
+            });
+        }
+        setCurrentProperty(null);
+    }
+
     let propertiesPanel = [];
     for (let idx in properties) {
         const property = properties[idx]
         propertiesPanel.push(
             <Col className="mb-4 col-lg-3 col-6" key={property.username}>
-                <PropertyCard property={property}/>
+                <PropertyCard property={property} deleteCurrentProperty={setCurrentProperty.bind(this)}/>
             </Col>
         );
     }
@@ -56,6 +75,9 @@ const Properties = () => {
                     {propertiesPanel}
                 </Row>
             </Row>
+            {currentProperty !== null &&
+                <DeleteModal handleDelete={handleDelete.bind(this)}/>
+            }
         </Container>
     );
 };

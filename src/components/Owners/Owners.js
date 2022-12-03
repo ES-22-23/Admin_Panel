@@ -4,12 +4,15 @@ import Row from "react-bootstrap/Row";
 import {Button, Card, Col} from "react-bootstrap";
 import OwnerCard from "../OwnerCard/OwnerCard";
 import SearchBar from "../SearchBar/SearchBar";
-import {getOwners} from "../../utils/ApiHandler";
+import {deleteOwner, getOwners} from "../../utils/ApiHandler";
 import {useParams} from "react-router-dom";
+import {toast} from "react-toastify";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 const Owners = () => {
 
     const [allOwners, setAllOwners] = React.useState([]);
+    const [currentOwner, setCurrentOwner] = React.useState(null);
 
     const { username } = useParams();
 
@@ -52,12 +55,27 @@ const Owners = () => {
         } else { setOwners(allOwners); }
     };
 
+    const handleDelete = (deleteOption) => {
+        if (deleteOption) {
+            deleteOwner(currentOwner.username).then(() => {
+                toast.success("Owner deleted successfully.");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }).catch((error) => {
+                console.log(error);
+                toast.error("Error deleting owner " + currentOwner.username + ".");
+            });
+        }
+        setCurrentOwner(null);
+    }
+
     let ownersPanels = [];
     for (let idx in owners) {
         const owner = owners[idx]
         ownersPanels.push(
             <Col className="mb-4 col-lg-3 col-6" key={owner.username}>
-                <OwnerCard owner={owner}/>
+                <OwnerCard owner={owner} deleteCurrentOwner={setCurrentOwner}/>
             </Col>
         );
     }
@@ -89,6 +107,9 @@ const Owners = () => {
                     {ownersPanels}
                 </Row>
             </Row>
+            {currentOwner !== null &&
+                <DeleteModal handleDelete={handleDelete.bind(this)}/>
+            }
         </Container>
     );
 }
