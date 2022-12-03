@@ -166,7 +166,8 @@ async function getVideoForCamera(cameraId) {
 }
 
 async function getVideoFile(videoKey) {
-    return await axios.get(apiAddress + "/events/" + videoKey, {
+    return await axios.get(apiAddress + "/events/", {
+        params: { "videoKey": videoKey },
         headers: {'Authorization': 'Bearer ' + keycloak.token}
     });
 }
