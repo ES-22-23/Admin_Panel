@@ -83,7 +83,7 @@ const History = () => {
 
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="History">
-            <Row className="w-50">
+            <Row className="w-75 mx-2">
                 <Row>
                     <Col className="col-lg-3 col-6">
                         <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>

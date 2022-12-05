@@ -38,18 +38,25 @@ const SecComNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/" className="px-3" active={url === "/" || url === "/home.feature"}>Home</Nav.Link>
-                        <Nav.Link href="/intrusions" className="px-3" active={url === "/intrusions"}>Intrusions</Nav.Link>
-                        <Nav.Link href="/properties" className="px-3" active={url === "/properties"}>Properties</Nav.Link>
-                        <Nav.Link href="/owners" className="px-3" active={url === "/owners"}>Owners</Nav.Link>
+                        <Nav.Link href="/" active={url === "/" || url === "/home"}>Home</Nav.Link>
+                        <NavDropdown title="Features" id="basic-nav-dropdown" menuVariant="dark"
+                                     active={url === "/intrusions" || url === "/properties" || url === "/owners"}>
+                            <NavDropdown.Item href="/intrusions" active={url === "/intrusions"}>Intrusions</NavDropdown.Item>
+                            <NavDropdown.Item href="/properties" active={url === "/properties"}>Properties</NavDropdown.Item>
+                            <NavDropdown.Item href="/owners" active={url === "/owners"}>Owners</NavDropdown.Item>
+                        </NavDropdown>
                         <NavDropdown title="Services" id="Services" active={url === "/services" ||
-                            url === "/services/alarms" || url === "/services/cameras"}>
+                            url === "/services/alarms" || url === "/services/cameras"} menuVariant="dark">
                             <NavDropdown.Item href="/services">All</NavDropdown.Item>
                             <NavDropdown.Item href="/services/alarms">Alarms</NavDropdown.Item>
                             <NavDropdown.Item href="/services/cameras">Cameras</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="/history" className="px-3" active={url === "/history"}>History</Nav.Link>
-                        <Nav.Link href="/account" className="px-3" active={url === "/account"}>Account</Nav.Link>
+                        <NavDropdown title="System" id="System" active={url === "/health" || url === "/history"}
+                                     menuVariant="dark">
+                            <NavDropdown.Item href="/history">History</NavDropdown.Item>
+                            <NavDropdown.Item href="/health">Health</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="/account" active={url === "/account"}>Account</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Col className="justify-content-end d-flex">

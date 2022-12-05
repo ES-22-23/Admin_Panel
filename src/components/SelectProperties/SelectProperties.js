@@ -57,7 +57,7 @@ const SelectProperties = (props) => {
         propertyPanel =
             <Card className="p-4 my-2 mx-0 cardItem text-white" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
-                backgroundColor: "rgba(0,0,0,0.90)"
+                backgroundColor: "rgba(0,0,0,0.80)"
             }}>
                 <span className="m-0 cardHidden"
                       style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Property ID</span>
@@ -74,7 +74,7 @@ const SelectProperties = (props) => {
         propertyPanel =
             <Card className="p-4 my-2 mx-0 text-white" data-testid="SelectedProperty" style={{
                 borderRadius: "20px",
-                backgroundColor: "rgba(0,0,0,0.90)"
+                backgroundColor: "rgba(0,0,0,0.80)"
             }}>
                 <h6 className="m-0 align-items-center d-flex"><BsQuestionSquareFill size={30} className="me-3"/> Select
                     a Property</h6>
