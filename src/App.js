@@ -27,6 +27,7 @@ import NewOwners from "./components/NewOwners/NewOwners";
 import NewServices from "./components/NewServices/NewServices";
 import Services from "./components/Services/Services";
 import Intrusions from "./components/Intrusions/Intrusions";
+import SystemHealth from "./components/SystemHealth/SystemHealth";
 
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
                     <Route path="/services/:componentType" element={<PrivateRoute><Services/></PrivateRoute>}></Route>
                     <Route path="/new/services" element={<PrivateRoute><NewServices/></PrivateRoute>}></Route>
                     <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
+                    <Route path="/health" element={<PrivateRoute><SystemHealth/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>

@@ -7,6 +7,8 @@ import {RiAlarmWarningFill} from "react-icons/ri";
 import CardItem from "../CardItem/CardItem";
 import CardBlock from "../CardBlock/CardBlock";
 import {BsCameraVideoFill} from "react-icons/bs";
+import {CgWebsite} from "react-icons/cg";
+import {AiFillApi} from "react-icons/ai";
 
 const ServiceCard = (props) => {
 
@@ -19,6 +21,10 @@ const ServiceCard = (props) => {
             setIcon(<RiAlarmWarningFill size={50}/>);
         } else if (props.componentType === "CAMERA") {
             setIcon(<BsCameraVideoFill size={50}/>);
+        } else if (props.componentType === "UI") {
+            setIcon(<CgWebsite size={50}/>);
+        } else if (props.componentType === "API") {
+            setIcon(<AiFillApi size={50}/>);
         }
     }, [props]);
 

@@ -120,7 +120,7 @@ const SelectServices = (props) => {
         servicePanel =
             <Card className="p-4 mt-2 mx-0 cardItem" data-testid="SelectedService" style={{
                 borderRadius: "20px",
-                backgroundColor: "rgba(0,0,0,0.90)"
+                backgroundColor: "rgba(0,0,0,0.80)"
             }}>
                 {currentService.componentType === "ALARM" &&
                     <RiAlarmWarningFill size={30}/>}
@@ -139,7 +139,7 @@ const SelectServices = (props) => {
             <Card className="p-4 mt-2 mx-0" data-testid="SelectedService" style={{
                 borderRadius: "20px",
 
-                backgroundColor: "rgba(0,0,0,0.90)"
+                backgroundColor: "rgba(0,0,0,0.80)"
             }}>
                 <h6 className="m-0 align-items-center d-flex"><BsQuestionSquareFill size={30} className="me-3"/> Select
                     a Service</h6>

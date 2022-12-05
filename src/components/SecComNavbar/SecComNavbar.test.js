@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import SecComNavbar from './SecComNavbar';
 
@@ -82,6 +82,11 @@ describe('<SecComNavbar />', () => {
     test('it should have the properties link', () => {
         render(<SecComNavbar/>);
 
+        const dropdown = screen.getByText("Features");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
+
         const link = screen.getByText("Properties");
 
         expect(link).toBeInTheDocument();
@@ -91,19 +96,57 @@ describe('<SecComNavbar />', () => {
     test('it should have the owners link', () => {
         render(<SecComNavbar/>);
 
+        const dropdown = screen.getByText("Features");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
+
         const link = screen.getByText("Owners");
 
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "/owners");
     });
 
+    test('it should have the services link', () => {
+        render(<SecComNavbar/>);
+
+        const dropdown = screen.getByText("Services");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
+
+        const link = screen.getByText("All");
+
+        expect(link).toBeInTheDocument();
+        expect(link).toHaveAttribute("href", "/services");
+    });
+
     test('it should have the history link', () => {
         render(<SecComNavbar/>);
+
+        const dropdown = screen.getByText("System");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
 
         const link = screen.getByText("History");
 
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "/history");
+    });
+
+    test('it should have the health link', () => {
+        render(<SecComNavbar/>);
+
+        const dropdown = screen.getByText("System");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
+
+        const link = screen.getByText("Health");
+
+        expect(link).toBeInTheDocument();
+        expect(link).toHaveAttribute("href", "/health");
     });
 
     test('it should have the account link', () => {

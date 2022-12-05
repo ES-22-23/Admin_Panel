@@ -30,7 +30,8 @@ const Services = () => {
             if (currentType)
                 setAllServices(response.data.registeredServices.filter(service => service.componentType === currentType));
             else
-                setAllServices(response.data.registeredServices);
+                setAllServices(response.data.registeredServices.filter(service =>
+                    service.componentType === "ALARM" || service.componentType === "CAMERA"));
 
         }).catch((error) => {
             console.log(error);
@@ -79,7 +80,8 @@ const Services = () => {
             if (componentType)
                 setAllServices(mockResponse.registeredServices.filter(service => service.componentType === currentType));
             else
-                setAllServices(mockResponse.registeredServices);
+                setAllServices(mockResponse.registeredServices.filter(service =>
+                    service.componentType === "ALARM" || service.componentType === "CAMERA"));
         });
     }, []);
 

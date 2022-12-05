@@ -24,7 +24,7 @@ const SearchBar = (props) => {
                 }
             </Col>
             <Col className="col-6 mb-3">
-                <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.80)", textAlign: "start"}}>
+                <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.90)", textAlign: "start"}}>
                     <span>Search by: <span style={{fontWeight: "bold"}}>{searchBy}</span></span>
                 </Card>
             </Col>
