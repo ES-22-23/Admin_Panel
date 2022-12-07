@@ -37,8 +37,8 @@ const OwnerProperties = () => {
                     console.log(error);
 
                     const mockProperty = {
-                        "id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-                        "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]
+                        "id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
+                        "cameras": ["a30c95b6-073b-4616-9b3d-f5c24304768c"], "alarms": ["b9823-073b-4616-9b3d-f5c2qwe4768c"]
                     };
 
                     if (!allProperties.includes(mockProperty))

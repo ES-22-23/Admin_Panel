@@ -24,8 +24,8 @@ const CardItem = (props) => {
                         <h6 className="m-0">{content}</h6>
                     </Card>
                 </Col>
-                <Col className="align-items-center justify-content-center d-flex m-0 px-1">
-                    <IoCloseCircle size={30} style={{color: "rgba(255,255,255,0.70)", cursor: "pointer"}} onClick={() => props.deleteFunction(content)}/>
+                <Col className="align-items-center justify-content-end d-flex m-0 px-1">
+                    <IoCloseCircle size={25} style={{color: "rgba(255,255,255,0.70)", cursor: "pointer"}} onClick={() => props.deleteFunction(content)}/>
                 </Col>
             </Row>
         );

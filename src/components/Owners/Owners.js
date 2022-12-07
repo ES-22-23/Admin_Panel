@@ -8,15 +8,20 @@ import {deleteOwner, getOwners} from "../../utils/ApiHandler";
 import {useParams} from "react-router-dom";
 import {toast} from "react-toastify";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import {getUsers} from "../../utils/KeycloakHandler";
 
 const Owners = () => {
 
+    const [allUsers, setAllUsers] = React.useState([]);
     const [allOwners, setAllOwners] = React.useState([]);
+
     const [currentOwner, setCurrentOwner] = React.useState(null);
+    const [owners, setOwners] = React.useState([]);
 
     const { username } = useParams();
 
     useEffect(() => {
+
         getOwners().then((response) => {
 
             if (username !== undefined)
@@ -25,7 +30,9 @@ const Owners = () => {
                 setAllOwners(response.data);
 
         }).catch((error) => {
+
             console.log(error);
+            toast.error("Error fetching Owners.");
 
             const mockOwners = [
                 {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
@@ -40,13 +47,20 @@ const Owners = () => {
             else
                 setAllOwners(mockOwners);
         });
+
+        getUsers().then((response) => {
+            console.log(response.data);
+            setAllUsers(response.data);
+        }).catch((error) => {
+            console.log(error);
+            toast.error("Error fetching Users.");
+        });
+
     }, [username]);
 
     useEffect(() => {
         setOwners(allOwners);
     }, [allOwners]);
-
-    const [owners, setOwners] = React.useState([]);
 
     const handleSearch = (search) => {
         if (search !== "") {
@@ -72,12 +86,19 @@ const Owners = () => {
 
     let ownersPanels = [];
     for (let idx in owners) {
-        const owner = owners[idx]
-        ownersPanels.push(
-            <Col className="mb-4 col-lg-3 col-6" key={owner.username}>
-                <OwnerCard owner={owner} deleteCurrentOwner={setCurrentOwner}/>
-            </Col>
-        );
+        let owner = owners[idx];
+
+        const user = allUsers.find(user => user.username.toLowerCase() === owner.username.toLowerCase());
+        if (user !== undefined) {
+            owner.name = user.firstName + " " + user.lastName;
+            owner.email = user.email;
+
+            ownersPanels.push(
+                <Col className="mb-4 col-lg-3 col-6" key={owner.username}>
+                    <OwnerCard owner={owner} deleteCurrentOwner={setCurrentOwner}/>
+                </Col>
+            );
+        }
     }
 
     return (
@@ -93,7 +114,7 @@ const Owners = () => {
                             <Button variant="danger" style={{width: "50%"}} href="/new/owners">Add New</Button>
                         </Col>
                         <Col className="col-6 mb-3">
-                            <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.80)", textAlign: "start"}}>
+                            <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.90)", textAlign: "start"}}>
                                 <span>Property Owner: <span style={{fontWeight: "bold"}}>{username}</span></span>
                             </Card>
                         </Col>
