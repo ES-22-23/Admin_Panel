@@ -39,7 +39,7 @@ const SecComNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/" active={url === "/" || url === "/home"}>Home</Nav.Link>
-                        <NavDropdown title="Features" id="basic-nav-dropdown" menuVariant="dark"
+                        <NavDropdown title="Clients" id="basic-nav-dropdown" menuVariant="dark"
                                      active={url === "/intrusions" || url === "/properties" || url === "/owners"}>
                             <NavDropdown.Item href="/intrusions" active={url === "/intrusions"}>Intrusions</NavDropdown.Item>
                             <NavDropdown.Item href="/properties" active={url === "/properties"}>Properties</NavDropdown.Item>
@@ -54,7 +54,7 @@ const SecComNavbar = () => {
                         <NavDropdown title="System" id="System" active={url === "/health" || url === "/history" || url === "/notifications"}
                                      menuVariant="dark">
                             <NavDropdown.Item href="/notifications">Notifications</NavDropdown.Item>
-                            <NavDropdown.Item href="/history">History</NavDropdown.Item>
+                            <NavDropdown.Item href="/history">Events</NavDropdown.Item>
                             <NavDropdown.Item href="/health">Health</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/account" active={url === "/account"}>Account</Nav.Link>
