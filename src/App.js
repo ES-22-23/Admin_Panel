@@ -10,7 +10,7 @@ import {createBrowserHistory} from "history";
 
 import Container from "react-bootstrap/Container";
 import {Spinner} from "react-bootstrap";
-import {Flip, ToastContainer} from "react-toastify";
+import {Flip, toast, ToastContainer} from "react-toastify";
 
 import SecComNavbar from "./components/SecComNavbar/SecComNavbar";
 import Home from "./components/Home/Home";
@@ -28,13 +28,70 @@ import NewServices from "./components/NewServices/NewServices";
 import Services from "./components/Services/Services";
 import Intrusions from "./components/Intrusions/Intrusions";
 import SystemHealth from "./components/SystemHealth/SystemHealth";
+import Notifications from "./components/Notifications/Notifications";
+import {useEffect} from "react";
+import {getVideos} from "./utils/ApiHandler";
 
 
 function App() {
 
     const customHistory = createBrowserHistory();
-
     const {keycloak, initialized} = useKeycloak();
+    const convertKey = (key) => {
+        const items = key.split('/');
+
+        const propertyId = items[0].replace('propId', '');
+        const cameraId = items[1].replace('cam', '');
+        const date = items[2].replace('Video', '');
+
+        return {
+            "key": key,
+            "propertyID": propertyId,
+            "cameraID": cameraId,
+            "intrusionDate": new Date(date)
+        };
+    }
+
+    const obtainIntrusions = (seconds) => {
+        getVideos().then((response) => {
+
+            const responseIntrusions = response.data;
+
+            const timeInterval = new Date();
+            for (let idx in responseIntrusions) {
+
+                const intrusion = convertKey(responseIntrusions[idx]);
+                const difference = Math.floor((timeInterval.getTime() - intrusion.intrusionDate.getTime()) / 1000);
+
+                if (difference >= 0 && difference <= seconds) {
+                    if (difference === 1) {
+                        toast.warning("Intrusion detected 1 second ago " +
+                            "[Property " + intrusion.propertyID + "].");
+                    } else {
+                        toast.warning("Intrusion detected " + difference + " seconds ago " +
+                            "[Property " + intrusion.propertyID + "].");
+                    }
+                }
+            }
+        });
+    }
+
+    useEffect(() => {
+        if (initialized) {
+
+            // Hardcoded value (milliseconds to seconds)
+            const seconds = 10;
+
+            obtainIntrusions(seconds);
+            const interval = setInterval(() => {
+                obtainIntrusions(seconds);
+            }, seconds * 1000)
+
+            return () => {
+                clearInterval(interval);
+            }
+        }
+    }, [initialized]);
 
     if (!initialized) {
         return (
@@ -73,7 +130,7 @@ function App() {
     let toastContainer = <ToastContainer
         position="bottom-right"
         autoClose={3000}
-        hideProgressBar
+        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         theme={"light"}
@@ -108,6 +165,7 @@ function App() {
                     <Route path="/new/services" element={<PrivateRoute><NewServices/></PrivateRoute>}></Route>
                     <Route path="/history" element={<PrivateRoute><History/></PrivateRoute>}></Route>
                     <Route path="/health" element={<PrivateRoute><SystemHealth/></PrivateRoute>}></Route>
+                    <Route path="/notifications" element={<PrivateRoute><Notifications/></PrivateRoute>}></Route>
                     <Route path="*" element={<PrivateRoute><Home/></PrivateRoute>}></Route>
                 </Routes>
             </Router>
