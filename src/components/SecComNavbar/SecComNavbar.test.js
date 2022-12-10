@@ -82,7 +82,7 @@ describe('<SecComNavbar />', () => {
     test('it should have the properties link', () => {
         render(<SecComNavbar/>);
 
-        const dropdown = screen.getByText("Features");
+        const dropdown = screen.getByText("Clients");
         expect(dropdown).toBeInTheDocument();
 
         fireEvent.click(dropdown);
@@ -96,7 +96,7 @@ describe('<SecComNavbar />', () => {
     test('it should have the owners link', () => {
         render(<SecComNavbar/>);
 
-        const dropdown = screen.getByText("Features");
+        const dropdown = screen.getByText("Clients");
         expect(dropdown).toBeInTheDocument();
 
         fireEvent.click(dropdown);
@@ -129,7 +129,7 @@ describe('<SecComNavbar />', () => {
 
         fireEvent.click(dropdown);
 
-        const link = screen.getByText("History");
+        const link = screen.getByText("Events");
 
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "/history");
