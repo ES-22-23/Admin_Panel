@@ -1,7 +1,7 @@
 import axios from "axios";
 import keycloak from "../Keycloak";
 
-const apiAddress = "http://scss.hgsoft.me:9090/registry";
+const apiAddress = "http://serviceregistry.scss.hgsoft.me/registry";
 
 async function getServices() {
     return await axios.get(apiAddress + "/services", {
