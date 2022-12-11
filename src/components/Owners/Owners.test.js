@@ -15,7 +15,7 @@ describe('<Owners />', () => {
     test('it should have the add owner button', () => {
         render(<Owners/>);
 
-        const button = screen.getByText("Add New");
+        const button = screen.getByText("New Owner");
         expect(button).toBeInTheDocument();
         expect(button).toHaveAttribute("href", "/new/owners");
     });

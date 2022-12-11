@@ -142,7 +142,7 @@ const SelectServices = (props) => {
                 backgroundColor: "rgba(0,0,0,0.80)"
             }}>
                 <h6 className="m-0 align-items-center d-flex"><BsQuestionSquareFill size={30} className="me-3"/> Select
-                    a Service</h6>
+                    a Device</h6>
             </Card>
         ;
     }

@@ -30,7 +30,7 @@ describe('<NewServices />', () => {
         test('it should notify unsuccessful submission', () => {
             render(<NewServices/>);
 
-            const button = screen.getByText('Register Service');
+            const button = screen.getByText('Register Device');
             fireEvent.click(button);
 
             expect(toast.success).not.toHaveBeenCalled();

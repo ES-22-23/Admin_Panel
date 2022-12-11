@@ -111,7 +111,7 @@ const Services = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Services">
             <Row className="w-100">
-                <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/services"/>
+                <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/services" addNewText="Device"/>
 
                 <Row className="justify-content-start d-flex">
                     {servicesPanels}

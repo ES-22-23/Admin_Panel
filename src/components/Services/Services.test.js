@@ -15,7 +15,7 @@ describe('<Services />', () => {
     test('it should have a add service button', () => {
         render(<Services/>);
 
-        const addServiceButton = screen.getByText("Add New");
+        const addServiceButton = screen.getByText("New Device");
         expect(addServiceButton).toBeInTheDocument();
         expect(addServiceButton).toHaveAttribute("href", "/new/services");
     });

@@ -49,7 +49,7 @@ const NewServices = () => {
                     <Col className="col-lg-2 col-4 text-start"><Button variant="danger" className="my-4 w-100 py-2" href="/services">Go Back</Button></Col>
                     <Col className="col-lg-4">
                         <Button variant="danger" className="my-4 w-100 py-2" disabled={currentService === undefined || currentProperty === undefined}
-                                onClick={handleSubmit.bind(this)}>Register Service
+                                onClick={handleSubmit.bind(this)}>Register Device
                         </Button>
                     </Col>
                 </Row>

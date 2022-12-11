@@ -105,13 +105,13 @@ const Owners = () => {
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Owners">
             <Row className="w-100">
                 {username === undefined &&
-                    <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/owners"/>
+                    <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/owners" addNewText="Owner"/>
                 }
 
                 {username !== undefined &&
                     <Row className="my-4 justify-content-start d-flex" data-testid="SearchBar">
                         <Col className="col-lg-3 col-7 justify-content-start d-flex mb-3">
-                            <Button variant="danger" style={{width: "50%"}} href="/new/owners">Add New</Button>
+                            <Button variant="danger" style={{width: "50%"}} href="/new/owners">New Owner</Button>
                         </Col>
                         <Col className="col-6 mb-3">
                             <Card className="py-2 px-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.90)", textAlign: "start"}}>

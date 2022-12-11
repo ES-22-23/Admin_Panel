@@ -20,7 +20,7 @@ const SearchBar = (props) => {
         <Row className="my-4 justify-content-start d-flex" data-testid="SearchBar">
             <Col className="col-lg-3 col-7 justify-content-start d-flex mb-3">
                 {props.addNew !== undefined &&
-                    <Button variant="danger" style={{width: "50%"}} href={props.addNew}>Add New</Button>
+                    <Button variant="danger" style={{width: "50%"}} href={props.addNew}>New {props.addNewText}</Button>
                 }
             </Col>
             <Col className="col-6 mb-3">
@@ -56,12 +56,15 @@ SearchBar.propTypes = {
     /** Function to be called when the search button is clicked */
     handleSearch: PropTypes.func,
     /** URL to be redirected to when the add new button is clicked */
-    addNew: PropTypes.string
+    addNew: PropTypes.string,
+    /** Text to be displayed on the add new button */
+    addNewText: PropTypes.string
 };
 
 SearchBar.defaultProps = {
     handleSearch: () => {},
     addNew: undefined,
+    addNewText: ""
 };
 
 export default SearchBar;
