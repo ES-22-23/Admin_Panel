@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Row from "react-bootstrap/Row";
 import VideoModal from "../VideoModal/VideoModal";
 import {toast} from "react-toastify";
+import {Button, Col} from "react-bootstrap";
 
 const Intrusions = () => {
 
@@ -14,6 +15,8 @@ const Intrusions = () => {
     const [intrusions, setIntrusions] = React.useState([]);
 
     const [selectedIntrusion, setSelectedIntrusion] = React.useState(null);
+
+    const [nIntrusions, setNIntrusions] = React.useState(4);
 
     const convertKey = (key) => {
         const items = key.split('/');
@@ -65,6 +68,7 @@ const Intrusions = () => {
             setIntrusions(allIntrusions.filter(intrusion => intrusion.propertyID.toLowerCase().startsWith(search.toLowerCase())
                 || intrusion.cameraID.toLowerCase().startsWith(search.toLowerCase())));
         } else { setIntrusions(allIntrusions); }
+        setNIntrusions(4);
     }
 
     const handleSelection = (intrusion) => {
@@ -73,6 +77,8 @@ const Intrusions = () => {
 
     let intrusionsPanels = [];
     for (let idx in intrusions) {
+        if (idx >= nIntrusions) { break; }
+
         const intrusion = intrusions[idx];
         intrusionsPanels.push(
             <Row className="my-2" key={intrusion.key}>
@@ -89,6 +95,16 @@ const Intrusions = () => {
                 <Row className="justify-content-start d-flex">
                     {intrusionsPanels}
                 </Row>
+
+                {intrusions.length > nIntrusions &&
+                    <Row className="justify-content-start d-flex mt-2">
+                        <Col>
+                            <Button className="mt-3 w-25" variant="danger" onClick={() => setNIntrusions(nIntrusions + 4)}>
+                                Load more
+                            </Button>
+                        </Col>
+                    </Row>
+                }
 
                 {selectedIntrusion !== null &&
                     <VideoModal intrusion={selectedIntrusion} handleClose={() => setSelectedIntrusion(null)} />

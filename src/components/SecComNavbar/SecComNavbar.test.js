@@ -79,6 +79,20 @@ describe('<SecComNavbar />', () => {
         expect(link).toHaveAttribute("href", "/");
     });
 
+    test('it should have the intrusion videos link', () => {
+        render(<SecComNavbar/>);
+
+        const dropdown = screen.getByText("Clients");
+        expect(dropdown).toBeInTheDocument();
+
+        fireEvent.click(dropdown);
+
+        const link = screen.getByText("Intrusion Videos");
+
+        expect(link).toBeInTheDocument();
+        expect(link).toHaveAttribute("href", "/intrusions");
+    });
+
     test('it should have the properties link', () => {
         render(<SecComNavbar/>);
 

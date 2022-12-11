@@ -6,13 +6,15 @@ import Container from "react-bootstrap/Container";
 import {toast} from "react-toastify";
 import IntrusionNotification from "../IntrusionNotification/IntrusionNotification";
 import Form from "react-bootstrap/Form";
-import {Col} from "react-bootstrap";
+import {Button, Col} from "react-bootstrap";
 import {IoReloadCircleSharp} from "react-icons/io5";
 
 const Notifications = () => {
 
     const [allIntrusions, setAllIntrusions] = React.useState([]);
     const [intrusions, setIntrusions] = React.useState([]);
+
+    const [nIntrusions, setNIntrusions] = React.useState(4);
 
     const [dateText, setDateText] = React.useState("");
     const convertKey = (key) => {
@@ -62,6 +64,7 @@ const Notifications = () => {
     }
     const updateIntrusions = () => {
         obtainIntrusions();
+        setNIntrusions(4);
         toast.info("Intrusions updated.");
     }
 
@@ -84,6 +87,11 @@ const Notifications = () => {
 
     let intrusionsPanels = [];
     for (let idx in intrusions) {
+
+        if (idx >= nIntrusions) {
+            break;
+        }
+
         const intrusion = intrusions[idx];
         intrusionsPanels.push(
             <Row className="my-2" key={intrusion.key}>
@@ -97,14 +105,14 @@ const Notifications = () => {
             <Row className="w-100">
                 <Row className="justify-content-center d-flex">
                     <Col className="text-start">
-                        <IoReloadCircleSharp size={40} style={{cursor: "pointer"}}
-                                             onClick={() => updateIntrusions()}/>
+                        <h6 style={{cursor: "pointer"}} onClick={() => updateIntrusions()}>
+                            <IoReloadCircleSharp size={40}/> Refresh</h6>
                     </Col>
                     <Col className="col-lg-4 col-8 mb-3 me-3">
                         <Form className="d-flex" autoComplete="off">
                             <Form.Control className="text-white" type="date"
                                           style={{border: "none", backgroundColor: "rgba(0,0,0,0.80)"}}
-                                          onChange={(e) => setDateText(e.target.value)}
+                                          onChange={(e) => {setDateText(e.target.value); setNIntrusions(4);}}
                             />
                         </Form>
                     </Col>
@@ -112,6 +120,15 @@ const Notifications = () => {
                 <Row className="justify-content-start d-flex">
                     {intrusionsPanels}
                 </Row>
+                {intrusions.length > nIntrusions &&
+                    <Row className="justify-content-start d-flex mt-2">
+                        <Col>
+                            <Button className="mt-3 w-25" variant="danger" onClick={() => setNIntrusions(nIntrusions + 4)}>
+                                Load more
+                            </Button>
+                        </Col>
+                    </Row>
+                }
             </Row>
         </Container>
     );

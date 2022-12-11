@@ -48,7 +48,7 @@ const SelectServices = (props) => {
                         },
                         "componentAvailability": {
                             "id": 61,
-                            "availability": "OFFLINE",
+                            "availability": "NOT_RESPONDING",
                             "lastTimeOnline": 1669236289649
                         }
                     },
@@ -65,7 +65,7 @@ const SelectServices = (props) => {
                         },
                         "componentAvailability": {
                             "id": 62,
-                            "availability": "OFFLINE",
+                            "availability": "ONLINE",
                             "lastTimeOnline": 1669236289649
                         }
                     },
@@ -150,25 +150,42 @@ const SelectServices = (props) => {
     let servicesPanels = [];
     for (let idx in services) {
         const service = services[idx];
+
+        let availability;
+        let isOnline = false;
+
         if (unavailableAlarms.includes(service.id) || unavailableCameras.includes(service.id)) {
+            availability = <span style={{color: "#DC3545FF", fontSize: "80%"}}>UNAVAILABLE</span>;
+        } else if (service.componentAvailability.availability === "OFFLINE") {
+            availability = <span style={{color: "#DC3545FF", fontSize: "80%"}}>OFFLINE</span>;
+        } else if (service.componentAvailability.availability === "NOT_RESPONDING") {
+            availability = <span style={{color: "rgba(255,50,50,0.71)", fontSize: "80%"}}>NOT RESPONDING</span>;
+        } else if (service.componentAvailability.availability === "ONLINE") {
+            availability = <span style={{color: "#ffc400", fontSize: "80%"}}>ONLINE</span>;
+            isOnline = true;
+        }
+
+        if (!isOnline) {
             servicesPanels.push(
                 <Card key={idx} className="p-4 my-2 mx-0 cardItem"
-                      style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)", opacity: "0.8"}} >
+                      style={{borderRadius: "20px", backgroundColor: "black", opacity: "0.7"}} >
 
                     {service.componentType === "ALARM" &&
                         <span className="align-items-center d-flex">
-                            <RiAlarmWarningFill size={30} className="me-3"/>
-                            <span style={{color: "#DC3545FF", fontSize: "80%"}}>UNAVAILABLE</span></span>}
+                            <RiAlarmWarningFill size={30} className="me-3" style={{color: "rgba(255,50,50,0.71)"}}/>
+                            {availability}
+                        </span>}
                     {service.componentType === "CAMERA" &&
                         <span className="align-items-center d-flex">
                             <BsCameraVideoFill size={30} className="me-3"/>
-                            <span style={{color: "#DC3545FF", fontSize: "80%"}}>UNAVAILABLE</span></span>}
+                            {availability}
+                        </span>}
 
                     <span className="m-0 mt-2 cardHidden"
-                          style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Component ID</span>
+                          style={{color: "rgba(255,50,50,0.71)", fontSize: "80%"}}>Component ID</span>
                     <h6 className="mx-0">{service.id}</h6>
                     <span className="m-0 cardHidden"
-                          style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Component Name</span>
+                          style={{color: "rgba(255,50,50,0.71)", fontSize: "80%"}}>Component Name</span>
                     <h6 className="m-0">{service.componentName}</h6>
                 </Card>
             );
@@ -179,9 +196,15 @@ const SelectServices = (props) => {
                       onClick={() => handleClick(service)}>
 
                     {service.componentType === "ALARM" &&
-                        <RiAlarmWarningFill size={30}/>}
+                        <span className="align-items-center d-flex">
+                            <RiAlarmWarningFill size={30} className="me-3"/>
+                            {availability}
+                        </span>}
                     {service.componentType === "CAMERA" &&
-                        <BsCameraVideoFill size={30}/>}
+                        <span className="align-items-center d-flex">
+                            <BsCameraVideoFill size={30} className="me-3"/>
+                            {availability}
+                        </span>}
 
                     <span className="m-0 mt-2 cardHidden"
                           style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Component ID</span>
