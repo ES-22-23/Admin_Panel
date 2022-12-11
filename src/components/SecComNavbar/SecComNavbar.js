@@ -41,9 +41,9 @@ const SecComNavbar = () => {
                         <Nav.Link href="/" active={url === "/" || url === "/home"}>Home</Nav.Link>
                         <NavDropdown title="Clients" id="basic-nav-dropdown" menuVariant="dark"
                                      active={url === "/intrusions" || url === "/properties" || url === "/owners"}>
-                            <NavDropdown.Item href="/intrusions" active={url === "/intrusions"}>Intrusions</NavDropdown.Item>
                             <NavDropdown.Item href="/properties" active={url === "/properties"}>Properties</NavDropdown.Item>
                             <NavDropdown.Item href="/owners" active={url === "/owners"}>Owners</NavDropdown.Item>
+                            <NavDropdown.Item href="/intrusions" active={url === "/intrusions"}>Intrusion Videos</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Devices" id="Devices" active={url === "/services" ||
                             url === "/services/alarms" || url === "/services/cameras"} menuVariant="dark">
