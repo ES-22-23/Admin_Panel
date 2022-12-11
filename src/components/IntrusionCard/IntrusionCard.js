@@ -15,7 +15,7 @@ const IntrusionCard = (props) => {
     }, [props.intrusion]);
 
     const handleDownload = () => {
-        getVideoFile(intrusion.key).then(response => {
+        getVideoFile(intrusion.key + ".mp4").then(response => {
 
             const contentType = response.headers['Content-type'];
             const filename =  response.headers['Content-disposition'].split('attachment; filename=')[1];
