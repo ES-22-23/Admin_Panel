@@ -30,7 +30,7 @@ const NewServices = () => {
                     toast.error("Error creating camera.");
                 });
             } else if (currentService.componentType === "ALARM") {
-                const alarm = {"privateId": currentService.id, "propertyName": currentProperty.name, "propertyAddress": currentProperty.address};
+                const alarm = {"id": currentService.id, "propertyName": currentProperty.name, "propertyAddress": currentProperty.address};
                 createAlarm(alarm).then(() => {
                     toast.success("Alarm created successfully.");
                     setTimeout(() => { window.location.href = "/services"; }, 2000);
