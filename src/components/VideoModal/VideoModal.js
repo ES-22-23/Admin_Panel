@@ -21,7 +21,7 @@ const VideoModal = (props) => {
     }, [props.intrusion]);
 
     useEffect(() => {
-        getVideoFile(intrusion.key).then(response => {
+        getVideoFile(intrusion.key +  ".mp4").then(response => {
 
             const contentType = response.headers['Content-type'];
 
