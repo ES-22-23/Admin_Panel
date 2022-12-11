@@ -19,6 +19,8 @@ const Intrusions = () => {
     const [nIntrusions, setNIntrusions] = React.useState(4);
 
     const convertKey = (key) => {
+
+        key = key.replace('.mp4', '');
         const items = key.split('/');
 
         const propertyId = items[0].replace('propId', '');

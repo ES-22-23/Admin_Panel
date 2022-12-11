@@ -27,8 +27,9 @@ const VideoModal = (props) => {
 
             // Binary Large Object (BLOB) is a collection of binary data stored as a single entity.
             const blob = new Blob([response.data], {type: contentType});
+            const url = window.URL.createObjectURL(blob);
 
-            setSrc(window.URL.createObjectURL(blob));
+            setSrc(url);
 
         }).catch(error => {
             console.log(error);

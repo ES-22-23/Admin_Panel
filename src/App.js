@@ -38,6 +38,8 @@ function App() {
     const customHistory = createBrowserHistory();
     const {keycloak, initialized} = useKeycloak();
     const convertKey = (key) => {
+
+        key = key.replace('.mp4', '');
         const items = key.split('/');
 
         const propertyId = items[0].replace('propId', '');
