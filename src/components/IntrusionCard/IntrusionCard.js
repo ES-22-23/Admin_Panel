@@ -20,6 +20,10 @@ const IntrusionCard = (props) => {
             const contentType = response.headers['Content-type'];
             const filename =  response.headers['Content-disposition'].split('attachment; filename=')[1];
 
+            if (filename === undefined || filename === null) {
+                return;
+            }
+
             // Binary Large Object (BLOB) is a collection of binary data stored as a single entity.
             const blob = new Blob([response.data], {type: contentType});
 
@@ -30,7 +34,7 @@ const IntrusionCard = (props) => {
 
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
+            link.remove();
 
             toast.success("Download completed!");
 
