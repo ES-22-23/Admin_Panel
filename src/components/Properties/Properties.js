@@ -70,7 +70,7 @@ const Properties = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Properties">
             <Row className="w-100">
-                <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/properties"/>
+                <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/properties" addNewText="Property"/>
                 <Row className="justify-content-start d-flex">
                     {propertiesPanel}
                 </Row>

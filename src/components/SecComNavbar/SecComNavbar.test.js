@@ -110,7 +110,7 @@ describe('<SecComNavbar />', () => {
     test('it should have the services link', () => {
         render(<SecComNavbar/>);
 
-        const dropdown = screen.getByText("Services");
+        const dropdown = screen.getByText("Devices");
         expect(dropdown).toBeInTheDocument();
 
         fireEvent.click(dropdown);

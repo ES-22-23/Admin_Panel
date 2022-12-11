@@ -15,7 +15,7 @@ describe('<Properties />', () => {
     test('it should have the add property button', () => {
         render(<Properties/>);
 
-        const button = screen.getByText("Add New");
+        const button = screen.getByText("New Property");
         expect(button).toBeInTheDocument();
         expect(button).toHaveAttribute("href", "/new/properties");
     });

@@ -18,6 +18,6 @@ describe('<SelectServices />', () => {
         const selectedService = screen.getByTestId('SelectedService');
 
         expect(selectedService).toBeInTheDocument();
-        expect(selectedService).toHaveTextContent('Select a Service');
+        expect(selectedService).toHaveTextContent('Select a Device');
     });
 });
