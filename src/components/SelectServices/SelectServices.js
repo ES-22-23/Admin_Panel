@@ -26,7 +26,9 @@ const SelectServices = (props) => {
     useEffect(() => {
 
         getServices().then((response) => {
-            setAllServices(response.data.registeredServices);
+
+            setAllServices(response.data.registeredServices.filter(service =>
+                service.componentType === "ALARM" || service.componentType === "CAMERA"));
 
         }).catch((error) => {
             console.log(error);
@@ -72,7 +74,8 @@ const SelectServices = (props) => {
                 ]
             };
 
-            setAllServices(mockResponse.registeredServices);
+            setAllServices(mockResponse.registeredServices.filter(service =>
+                service.componentType === "ALARM" || service.componentType === "CAMERA"));
         });
 
         getCameras().then((response) => {
@@ -177,7 +180,7 @@ const SelectServices = (props) => {
                         </span>}
                     {service.componentType === "CAMERA" &&
                         <span className="align-items-center d-flex">
-                            <BsCameraVideoFill size={30} className="me-3"/>
+                            <BsCameraVideoFill size={30} className="me-3" style={{color: "rgba(255,50,50,0.71)"}}/>
                             {availability}
                         </span>}
 
