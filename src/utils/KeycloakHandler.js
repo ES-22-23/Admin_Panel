@@ -10,4 +10,16 @@ async function getUsers() {
     });
 }
 
-export {getUsers};
+async function registerUser(user) {
+    return await axios.post(keycloakAddress + "/admin/realms/keycloak-react-auth/users", user, {
+        headers: {'Authorization': 'bearer ' + keycloak.token}
+    });
+}
+
+async function deleteUser(userId) {
+    return await axios.delete(keycloakAddress + "/admin/realms/keycloak-react-auth/users/" + userId, {
+        headers: {'Authorization': 'bearer ' + keycloak.token}
+    });
+}
+
+export {getUsers, registerUser, deleteUser};
