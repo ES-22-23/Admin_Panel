@@ -41,7 +41,7 @@ const Intrusions = () => {
                 currentIntrusions.push(convertKey(intrusion));
             }
 
-            setAllIntrusions(currentIntrusions.sort((a, b) => new Date(b.intrusionDate) - new Date(a.intrusionDate)));
+            setAllIntrusions(currentIntrusions.sort((a, b) => new Date(a.intrusionDate) - new Date(b.intrusionDate)));
 
         }).catch((error) => {
             console.log(error);
