@@ -17,13 +17,13 @@ const NewOwners = () => {
 
     // const [users, setUsers] = React.useState([]);
 
+    /*
     useEffect(() => {
         getUsers().then(response => {
             setUsers(response.data);
         });
     }, []);
 
-    /*
     const obtainUserID = (username) => {
         let id = "";
         users.forEach(user => {
