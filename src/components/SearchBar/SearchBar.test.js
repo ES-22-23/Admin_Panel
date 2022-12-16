@@ -18,4 +18,11 @@ describe('<SearchBar />', () => {
         const searchButton = screen.getByText('Search');
         expect(searchButton).toBeInTheDocument();
     });
+
+    test('it should display the placeholder', () => {
+        render(<SearchBar placeholder="Test"/>);
+
+        const placeholder = screen.getByText('Test');
+        expect(placeholder).toBeInTheDocument();
+    });
 });

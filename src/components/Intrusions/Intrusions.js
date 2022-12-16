@@ -86,7 +86,7 @@ const Intrusions = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Intrusions">
             <Row className="w-100">
-                <SearchBar handleSearch={handleSearch.bind(this)}/>
+                <SearchBar handleSearch={handleSearch.bind(this)} placeholder="[Property ID, Camera ID]"/>
 
                 <Row className="justify-content-start d-flex">
                     {intrusionsPanels}

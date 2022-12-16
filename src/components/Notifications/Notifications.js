@@ -94,7 +94,8 @@ const Notifications = () => {
                 <Row className="justify-content-center d-flex">
                     <Col className="text-start">
                         <h6 style={{cursor: "pointer"}} onClick={() => updateIntrusions()}>
-                            <IoReloadCircleSharp size={40}/> Refresh</h6>
+                            <IoReloadCircleSharp size={40}/> Refresh
+                        </h6>
                     </Col>
                     <Col className="col-lg-4 col-8 mb-3 me-3">
                         <Form className="d-flex" autoComplete="off">

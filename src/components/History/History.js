@@ -86,7 +86,7 @@ const History = () => {
             <Row className="w-75 mx-2">
                 <Row>
                     <Col className="col-lg-3 col-6">
-                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
+                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.70)", textAlign: "start"}}>
                             <h6>Filter by <br /><span style={{fontWeight: "bold"}}>Entity</span></h6>
                             <Form.Group className="py-2" data-testid="EntityForm">
                                 <Form.Select className="text-white" style={{backgroundColor: "rgba(0,0,0,0.80)", border: "none"}}
@@ -101,7 +101,7 @@ const History = () => {
                         </Card>
                     </Col>
                     <Col className="col-lg-3 col-6">
-                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
+                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.70)", textAlign: "start"}}>
                             <h6>Filter by <br /><span style={{fontWeight: "bold"}}>Action</span></h6>
                             <Form.Group className="py-2" data-testid="ActionForm">
                                 <Form.Select className="text-white" style={{backgroundColor: "rgba(0,0,0,0.80)", border: "none"}}
@@ -115,7 +115,7 @@ const History = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
+                        <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.70)", textAlign: "start"}}>
                            <Row>
                                <Col>
                                    <h6>Search by <br /><span style={{fontWeight: "bold"}}>Admin</span></h6>
