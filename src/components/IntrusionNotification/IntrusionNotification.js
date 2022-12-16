@@ -30,7 +30,7 @@ const IntrusionNotification = (props) => {
                     <Card className="p-4 mx-0 w-100" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>
                         <span className="m-0" style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Intrusion Date</span>
                         <h6 className="m-0"
-                            style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.intrusionDate.toLocaleString()}</h6>
+                            style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{new Date(intrusion.timestamp).toLocaleString()}</h6>
                     </Card>
                 </Col>
             </Row>

@@ -3,49 +3,40 @@ import PropTypes from 'prop-types';
 import './IntrusionCard.css';
 import Row from "react-bootstrap/Row";
 import {Button, Card, Col} from "react-bootstrap";
-import {getVideoFile} from "../../utils/ApiHandler";
 import {toast} from "react-toastify";
+import {getVideoUrl} from "../../utils/IntrusionApiHandler";
 
 const IntrusionCard = (props) => {
 
     const [intrusion, setIntrusion] = React.useState(props.intrusion);
+    const [videoUrl, setVideoUrl] = React.useState(undefined);
 
     useEffect(() => {
-        setIntrusion(props.intrusion);
+
+        if (props.intrusion) {
+            setIntrusion(props.intrusion);
+
+            getVideoUrl(intrusion.videoKey).then((response) => {
+                setVideoUrl(response.data);
+            }).catch((error) => {
+                // console.log(error);
+                toast.error("Error fetching video.");
+            });
+        }
+
     }, [props.intrusion]);
-
-    const handleDownload = () => {
-        getVideoFile(intrusion.key + ".mp4").then(response => {
-
-            const contentType = response.headers['Content-type'];
-            const filename =  response.headers['Content-disposition'].split('attachment; filename=')[1];
-
-            if (filename === undefined || filename === null) {
-                return;
-            }
-
-            // Binary Large Object (BLOB) is a collection of binary data stored as a single entity.
-            const blob = new Blob([response.data], {type: contentType});
-
-            // We create an object URL for the incoming Blob and tell the browser to download the image with a hidden <a> HTML element.
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = filename;
-
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-            toast.success("Download completed!");
-
-        }).catch(error => {
-            console.log(error);
-            toast.error("Error downloading video.");
-        });
-    }
 
     const handleSelection = () => {
         props.handleSelection(intrusion);
+    }
+
+    const handleDownload = () => {
+        // Opens a new tab with the video
+        window.open(videoUrl);
+    }
+
+    if (!intrusion) {
+        return <div data-testid="IntrusionCard"></div>;
     }
 
     return (
@@ -70,13 +61,18 @@ const IntrusionCard = (props) => {
                     <Card className="p-4 mx-0" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>
                         <span className="m-0" style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Intrusion Date</span>
                         <h6 className="m-0"
-                            style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.intrusionDate}</h6>
+                            style={{
+                                lineHeight: "1.2em",
+                                minHeight: "2.4em"
+                            }}>{new Date(intrusion.timestamp).toLocaleString()}</h6>
                     </Card>
                 </Col>
                 <Col className="col-lg-3 col-6 my-2">
                     <Row className="justify-content-center d-flex">
-                        <Button variant="danger" className="w-75 py-2 m-2" onClick={handleSelection}>View Video</Button>
-                        <Button variant="dark" className="w-75 py-2 m-2" onClick={handleDownload}>Download Video</Button>
+                        <Button variant="danger" className="w-75 py-2 m-2" onClick={handleSelection} disabled={!videoUrl}>
+                            View Video</Button>
+                        <Button variant="dark" className="w-75 py-2 m-2" onClick={handleDownload} disabled={!videoUrl}>
+                            Download Video</Button>
                     </Row>
                 </Col>
             </Row>
@@ -92,13 +88,9 @@ IntrusionCard.propTypes = {
 };
 
 IntrusionCard.defaultProps = {
-    intrusion: {
-        key: "",
-        propertyID: "",
-        cameraID: "",
-        intrusionDate: ""
-    },
-    handleSelection: () => {}
+    intrusion: null,
+    handleSelection: () => {
+    }
 };
 
 export default IntrusionCard;

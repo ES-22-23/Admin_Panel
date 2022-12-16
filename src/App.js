@@ -30,29 +30,13 @@ import Intrusions from "./components/Intrusions/Intrusions";
 import SystemHealth from "./components/SystemHealth/SystemHealth";
 import Notifications from "./components/Notifications/Notifications";
 import {useEffect} from "react";
-import {getVideos} from "./utils/ApiHandler";
+import {getVideos} from "./utils/IntrusionApiHandler";
 
 
 function App() {
 
     const customHistory = createBrowserHistory();
     const {keycloak, initialized} = useKeycloak();
-    const convertKey = (key) => {
-
-        key = key.replace('.mp4', '');
-        const items = key.split('/');
-
-        const propertyId = items[0].replace('propId', '');
-        const cameraId = items[1].replace('cam', '');
-        const date = items[2].replace('Video', '');
-
-        return {
-            "key": key,
-            "propertyID": propertyId,
-            "cameraID": cameraId,
-            "intrusionDate": new Date(date)
-        };
-    }
 
     const obtainIntrusions = (seconds) => {
         getVideos().then((response) => {
@@ -62,8 +46,8 @@ function App() {
             const timeInterval = new Date();
             for (let idx in responseIntrusions) {
 
-                const intrusion = convertKey(responseIntrusions[idx]);
-                const difference = Math.floor((timeInterval.getTime() - intrusion.intrusionDate.getTime()) / 1000);
+                const intrusion = responseIntrusions[idx];
+                const difference = Math.floor((timeInterval.getTime() - intrusion.timestamp.getTime()) / 1000);
 
                 if (difference >= 0 && difference <= seconds) {
                     if (difference === 1) {

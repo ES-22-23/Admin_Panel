@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import './Notifications.css';
-import {getVideos} from "../../utils/ApiHandler";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import {toast} from "react-toastify";
@@ -8,6 +7,7 @@ import IntrusionNotification from "../IntrusionNotification/IntrusionNotificatio
 import Form from "react-bootstrap/Form";
 import {Button, Col} from "react-bootstrap";
 import {IoReloadCircleSharp} from "react-icons/io5";
+import {getVideos} from "../../utils/IntrusionApiHandler";
 
 const Notifications = () => {
 
@@ -17,51 +17,37 @@ const Notifications = () => {
     const [nIntrusions, setNIntrusions] = React.useState(4);
 
     const [dateText, setDateText] = React.useState("");
-    const convertKey = (key) => {
 
-        key = key.replace('.mp4', '');
-        const items = key.split('/');
-
-        const propertyId = items[0].replace('propId', '');
-        const cameraId = items[1].replace('cam', '');
-        const date = items[2].replace('Video', '');
-
-        return {
-            "key": key,
-            "propertyID": propertyId,
-            "cameraID": cameraId,
-            "intrusionDate": new Date(date)
-        };
-    }
     const obtainIntrusions = () => {
 
         getVideos().then((response) => {
 
             const responseIntrusions = response.data;
-            const currentIntrusions = [];
-
-            for (let idx in responseIntrusions) {
-                const intrusion = responseIntrusions[idx];
-                currentIntrusions.push(convertKey(intrusion));
-            }
-
-            setAllIntrusions(currentIntrusions.sort((a, b) => new Date(b.intrusionDate) - new Date(a.intrusionDate)));
+            setAllIntrusions(responseIntrusions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
 
         }).catch((error) => {
             console.log(error);
             toast.error("Error fetching intrusions.");
 
             const mockResponse = [
-                "propId2/cam36e25c8c-165a-445a-b062-9b7a16195dd6/Video2022-11-28 03:38:09.845474",
-                "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
+                {
+                    "id": 1,
+                    "propertyID": 2,
+                    "cameraID": "36e25c8c-165a-445a-b062-9b7a16195dd6",
+                    "timestamp": "2022-11-28 03:38:09.845474",
+                    "videoKey": "propId2/cam36e25c8c-165a-445a-b062-9b7a16195dd6/Video2022-11-28 03:38:09.845474"
+                },
+                {
+                    "id": 2,
+                    "propertyID": 3,
+                    "cameraID": "2b034ras-23-b062-9b7a16195dd6",
+                    "timestamp": "2022-11-30 05:41:09.845474",
+                    "videoKey": "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
+                }
             ];
 
-            const mockIntrusions = [];
-            for (let idx in mockResponse) {
-                mockIntrusions.push(convertKey(mockResponse[idx]));
-            }
+            setAllIntrusions(mockResponse.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
 
-            setAllIntrusions(mockIntrusions.sort((a, b) => new Date(b.intrusionDate) - new Date(a.intrusionDate)));
         });
     }
     const updateIntrusions = () => {

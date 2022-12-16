@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import './Intrusions.css';
-import {getVideos} from "../../utils/ApiHandler";
 import Container from "react-bootstrap/Container";
 import IntrusionCard from "../IntrusionCard/IntrusionCard";
 import SearchBar from "../SearchBar/SearchBar";
@@ -8,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import VideoModal from "../VideoModal/VideoModal";
 import {toast} from "react-toastify";
 import {Button, Col} from "react-bootstrap";
+import {getVideos} from "../../utils/IntrusionApiHandler";
 
 const Intrusions = () => {
 
@@ -18,46 +18,36 @@ const Intrusions = () => {
 
     const [nIntrusions, setNIntrusions] = React.useState(4);
 
-    const convertKey = (key) => {
-
-        key = key.replace('.mp4', '');
-        const items = key.split('/');
-
-        const propertyId = items[0].replace('propId', '');
-        const cameraId = items[1].replace('cam', '');
-        const date = items[2].replace('Video', '');
-
-        return {"key": key, "propertyID": propertyId, "cameraID": cameraId, "intrusionDate": new Date(date).toLocaleString()};
-    }
-
     useEffect(() => {
+
         getVideos().then((response) => {
 
             const responseIntrusions = response.data;
-            const currentIntrusions = [];
-
-            for (let idx in responseIntrusions) {
-                const intrusion = responseIntrusions[idx];
-                currentIntrusions.push(convertKey(intrusion));
-            }
-
-            setAllIntrusions(currentIntrusions.sort((a, b) => new Date(a.intrusionDate) - new Date(b.intrusionDate)));
+            setAllIntrusions(responseIntrusions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
 
         }).catch((error) => {
             console.log(error);
             toast.error("Error fetching intrusions.");
 
             const mockResponse = [
-                "propId2/cam36e25c8c-165a-445a-b062-9b7a16195dd6/Video2022-11-28 03:38:09.845474",
-                "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
+                {
+                    "id": 1,
+                    "propertyID": 2,
+                    "cameraID": "36e25c8c-165a-445a-b062-9b7a16195dd6",
+                    "timestamp": "2022-11-28 03:38:09.845474",
+                    "videoKey": "propId2/cam36e25c8c-165a-445a-b062-9b7a16195dd6/Video2022-11-28 03:38:09.845474"
+                },
+                {
+                    "id": 2,
+                    "propertyID": 3,
+                    "cameraID": "2b034ras-23-b062-9b7a16195dd6",
+                    "timestamp": "2022-11-30 05:41:09.845474",
+                    "videoKey": "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
+                }
             ];
 
-            const mockIntrusions = [];
-            for (let idx in mockResponse) {
-                mockIntrusions.push(convertKey(mockResponse[idx]));
-            }
+            setAllIntrusions(mockResponse.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
 
-            setAllIntrusions(mockIntrusions.sort((a, b) => new Date(b.intrusionDate) - new Date(a.intrusionDate)));
         });
     }, []);
 
@@ -69,7 +59,9 @@ const Intrusions = () => {
         if (search !== "") {
             setIntrusions(allIntrusions.filter(intrusion => intrusion.propertyID.toLowerCase().startsWith(search.toLowerCase())
                 || intrusion.cameraID.toLowerCase().startsWith(search.toLowerCase())));
-        } else { setIntrusions(allIntrusions); }
+        } else {
+            setIntrusions(allIntrusions);
+        }
         setNIntrusions(4);
     }
 
@@ -79,7 +71,9 @@ const Intrusions = () => {
 
     let intrusionsPanels = [];
     for (let idx in intrusions) {
-        if (idx >= nIntrusions) { break; }
+        if (idx >= nIntrusions) {
+            break;
+        }
 
         const intrusion = intrusions[idx];
         intrusionsPanels.push(
@@ -101,7 +95,8 @@ const Intrusions = () => {
                 {intrusions.length > nIntrusions &&
                     <Row className="justify-content-start d-flex mt-2">
                         <Col>
-                            <Button className="mt-3 w-25" variant="danger" onClick={() => setNIntrusions(nIntrusions + 4)}>
+                            <Button className="mt-3 w-25" variant="danger"
+                                    onClick={() => setNIntrusions(nIntrusions + 4)}>
                                 Load more
                             </Button>
                         </Col>
@@ -109,7 +104,7 @@ const Intrusions = () => {
                 }
 
                 {selectedIntrusion !== null &&
-                    <VideoModal intrusion={selectedIntrusion} handleClose={() => setSelectedIntrusion(null)} />
+                    <VideoModal intrusion={selectedIntrusion} handleClose={() => setSelectedIntrusion(null)}/>
                 }
             </Row>
         </Container>

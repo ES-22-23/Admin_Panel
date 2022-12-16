@@ -4,9 +4,11 @@ import '@testing-library/jest-dom/extend-expect';
 import IntrusionCard from './IntrusionCard';
 
 const intrusion = {
-    "propertyID": "2",
-    "cameraID": "36e25c8c-165a-445a-b062-9b7a16195dd6",
-    "intrusionDate": new Date().toLocaleString()
+    "id": 2,
+    "propertyID": 3,
+    "cameraID": "2b034ras-23-b062-9b7a16195dd6",
+    "timestamp": "2022-11-30 05:41:09.845474",
+    "videoKey": "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
 };
 
 describe('<IntrusionCard />', () => {
@@ -50,10 +52,11 @@ describe('<IntrusionCard />', () => {
 
     test('it should display intrusion date', () => {
 
+
         render(<IntrusionCard intrusion={intrusion}/>);
 
         const titleIntrusionDate = screen.getByText("Intrusion Date");
-        const intrusionDate = screen.getByText(intrusion.intrusionDate);
+        const intrusionDate = screen.getByText(new Date(intrusion.timestamp).toLocaleString());
 
         expect(titleIntrusionDate).toBeInTheDocument();
         expect(intrusionDate).toBeInTheDocument();
