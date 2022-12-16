@@ -12,11 +12,19 @@ describe('<Intrusions />', () => {
         expect(intrusions).toBeInTheDocument();
     });
 
-    test('it should have a search bar', () => {
+    test('it should display the correct number of intrusions', () => {
         render(<Intrusions/>);
 
-        const searchBar = screen.getByTestId('SearchBar');
+        const intrusions = screen.getByTestId('NumberOfIntrusions');
+        expect(intrusions).toBeInTheDocument();
+        expect(intrusions).toHaveTextContent("0");
+    });
 
-        expect(searchBar).toBeInTheDocument();
+    test('it should display the correct number of total intrusions', () => {
+        render(<Intrusions/>);
+
+        const intrusions = screen.getByTestId('NumberOfTotalIntrusions');
+        expect(intrusions).toBeInTheDocument();
+        expect(intrusions).toHaveTextContent("0");
     });
 });
