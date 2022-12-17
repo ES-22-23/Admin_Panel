@@ -27,7 +27,8 @@ const DeleteModal = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h6 className="mt-1 mx-2"><span style={{fontWeight: "bold"}}>Warning: </span> Are you sure you want to delete?</h6>
+                <h6 className="mt-1 mb-3 mx-2"><span style={{fontWeight: "bold"}}>Warning: </span> Are you sure you
+                    want to delete Property <span style={{fontWeight: "bold"}}>{props.property.id}</span>?</h6>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="dark" className="mt-4 py-3 px-4" style={{borderRadius: "10px"}}
@@ -41,7 +42,9 @@ const DeleteModal = (props) => {
 
 DeleteModal.propTypes = {
     /** Function to confirm or cancel deletion */
-    handleDelete: PropTypes.func
+    handleDelete: PropTypes.func,
+    /** Property being deleted */
+    property: PropTypes.object,
 };
 
 DeleteModal.defaultProps = {};

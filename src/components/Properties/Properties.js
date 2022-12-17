@@ -77,7 +77,7 @@ const Properties = () => {
                 </Row>
             </Row>
             {currentProperty !== null &&
-                <DeleteModal handleDelete={handleDelete.bind(this)}/>
+                <DeleteModal handleDelete={handleDelete.bind(this)} property={currentProperty}/>
             }
         </Container>
     );
