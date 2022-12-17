@@ -13,18 +13,10 @@ const intrusion = {
 
 describe('<IntrusionNotification />', () => {
     test('it should mount', () => {
-        render(<IntrusionNotification/>);
-
-        const intrusionCard = screen.getByTestId('IntrusionNotification');
-
-        expect(intrusionCard).toBeInTheDocument();
-    });
-
-    test('it should mount with intrusion', () => {
-
         render(<IntrusionNotification intrusion={intrusion}/>);
 
         const intrusionCard = screen.getByTestId('IntrusionNotification');
+
         expect(intrusionCard).toBeInTheDocument();
     });
 
