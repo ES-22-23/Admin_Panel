@@ -21,12 +21,7 @@ const Properties = () => {
             setAllProperties(response.data);
         }).catch((error) => {
             console.log(error);
-            setAllProperties([
-                {"id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
-                    "cameras": ["a30c95b6-073b-4616-9b3d-f5c24304768c"], "alarms": ["b9823-073b-4616-9b3d-f5c2qwe4768c"]},
-                {"id": 2, "name": "Property 2", "address": "Address 2", "owner": {"username": "Luna"},
-                    "cameras": ["k1sdn20b6-073b-3526-9b3d-f5c24304768c"], "alarms": ["c823gh823-073b-8216-4b3d-f5c2qwe4768c"]},
-            ]);
+            toast.error("Unable to get Properties.")
         });
     }, []);
 
@@ -51,7 +46,7 @@ const Properties = () => {
                 }, 2000);
             }).catch((error) => {
                 console.log(error);
-                toast.error("Error deleting property " + currentProperty.id + ".");
+                toast.error("Unable to delete Property " + currentProperty.id + ".");
             });
         }
         setCurrentProperty(null);

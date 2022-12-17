@@ -31,27 +31,7 @@ const Intrusions = () => {
 
         }).catch((error) => {
             console.log(error);
-            toast.error("Error fetching intrusions.");
-
-            const mockResponse = [
-                {
-                    "id": 1,
-                    "propertyID": 2,
-                    "cameraID": "36e25c8c-165a-445a-b062-9b7a16195dd6",
-                    "timestamp": "2022-11-28 03:38:09.845474",
-                    "videoKey": "propId2/cam36e25c8c-165a-445a-b062-9b7a16195dd6/Video2022-11-28 03:38:09.845474"
-                },
-                {
-                    "id": 2,
-                    "propertyID": 3,
-                    "cameraID": "2b034ras-23-b062-9b7a16195dd6",
-                    "timestamp": "2022-11-30 05:41:09.845474",
-                    "videoKey": "propId3/cam2b034ras-23-b062-9b7a16195dd6/Video2022-11-30 05:41:09.845474"
-                }
-            ];
-
-            setAllIntrusions(mockResponse.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
-
+            toast.error("Unable to get Intrusions.");
         });
     }, []);
 

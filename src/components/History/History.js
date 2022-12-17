@@ -19,15 +19,6 @@ const History = () => {
         }).catch((error) => {
             console.log(error);
             toast.error("Unable to get History.");
-
-            const mockHistory = [
-                {"id": 1, "date": "2022-11-01T12:00:00", "admin": "Danny", "action_type": "CREATED", "entity_type": "Owner", "entity_id": "John"},
-                {"id": 2, "date": "2022-11-01T13:40:00", "admin": "Danny", "action_type": "CREATED", "entity_type": "Property", "entity_id": 1},
-                {"id": 3, "date": "2022-11-01T14:15:00", "admin": "Mary", "action_type": "DELETED", "entity_type": "Owner", "entity_id": "John"},
-                {"id": 4, "date": "2022-11-01T15:04:00", "admin": "Danny", "action_type": "CREATED", "entity_type": "Property", "entity_id": 2},
-            ];
-
-            setAllHistory(mockHistory);
         });
     }, []);
 
@@ -68,7 +59,7 @@ const History = () => {
     for (let idx in history) {
         const action = history[idx];
         actionsPanels.push(
-            <Card className="my-2" style={{backgroundColor: "rgba(0,0,0,0.60)"}} key={action.id} data-testid={action.id}>
+            <Card className="my-2 mx-0" style={{backgroundColor: "rgba(0,0,0,0.60)"}} key={action.id} data-testid={action.id}>
                 <Card.Body>
                     <Card.Title><span style={{color: "#ffc400", fontSize: "85%"}}>{action.action_type}</span> {action.entity_type} {action.entity_id}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{action.date.replace("T", " ")}</Card.Subtitle>
@@ -84,7 +75,7 @@ const History = () => {
     return (
         <Container className="text-center justify-content-center d-flex py-5" data-testid="History">
             <Row className="w-75 mx-2">
-                <Row>
+                <Row className="m-0">
                     <Col className="col-lg-3 col-6">
                         <Card className="mt-4 p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.70)", textAlign: "start"}}>
                             <h6>Filter by <br /><span style={{fontWeight: "bold"}}>Entity</span></h6>

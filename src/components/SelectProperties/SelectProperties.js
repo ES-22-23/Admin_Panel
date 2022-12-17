@@ -6,6 +6,7 @@ import {BsQuestionSquareFill} from "react-icons/bs";
 import {getProperties} from "../../utils/ApiHandler";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
+import {toast} from "react-toastify";
 
 const SelectProperties = (props) => {
 
@@ -22,12 +23,7 @@ const SelectProperties = (props) => {
             setAllProperties(response.data);
         }).catch((error) => {
             console.log(error);
-            setAllProperties([
-                {"id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
-                    "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]},
-                {"id": 2, "name": "Property 2", "address": "Address 2", "owner": {"username": "Luna"},
-                    "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
-            ]);
+            toast.error("Unable to get Properties.")
         });
     }, []);
 

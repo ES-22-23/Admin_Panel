@@ -4,6 +4,7 @@ import {Card} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import {getOwners} from "../../utils/ApiHandler";
 import PropTypes from "prop-types";
+import {toast} from "react-toastify";
 
 const AutoComplete = (props) => {
 
@@ -16,14 +17,7 @@ const AutoComplete = (props) => {
             setAllSuggestions(response.data);
         }).catch((error) => {
             console.log(error);
-            const mockOwners = [
-                {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
-                        {"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-                            "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
-                    ]},
-                {"username": "Luna", "name": "Luna Mary", "email": "luna@ua.pt", "properties": []},
-            ];
-            setAllSuggestions(mockOwners);
+            toast.error("Unable to get Owners.")
         });
     }, []);
 

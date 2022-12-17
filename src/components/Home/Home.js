@@ -27,7 +27,7 @@ const Home = () => {
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Home">
             <Row className="justify-content-center align-items-center d-flex mt-4">
                 <Col className="col-lg-2 col-4 px-4 py-2 me-4 shadow"
-                     style={{backgroundColor: "rgba(0,0,0,0.60)", backgroundSize: "cover", borderRadius: "20px"}}>
+                     style={{ backgroundSize: "cover", borderRadius: "20px"}}>
                     {buttons}
                 </Col>
                 <Col className="col-lg-5">

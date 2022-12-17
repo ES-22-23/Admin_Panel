@@ -26,56 +26,12 @@ const SelectServices = (props) => {
     useEffect(() => {
 
         getServices().then((response) => {
-
             setAllServices(response.data.registeredServices.filter(service =>
                 service.componentType === "ALARM" || service.componentType === "CAMERA"));
 
         }).catch((error) => {
             console.log(error);
             toast.error("Unable to get Services.");
-
-            const mockResponse = {
-                "message": "Request Successful!",
-                "registeredServices": [
-                    {
-                        "id": "36e25c8c-165a-445a-b062-9b7a16195dd6",
-                        "componentName": "Camera",
-                        "healthEndpoint": "/health",
-                        "componentProtocol": "HTTP",
-                        "componentType": "CAMERA",
-                        "componentAddress": {
-                            "id": 41,
-                            "privateAddress": "10.0.10.2",
-                            "publicAddress": "2.34.23.220"
-                        },
-                        "componentAvailability": {
-                            "id": 61,
-                            "availability": "NOT_RESPONDING",
-                            "lastTimeOnline": 1669236289649
-                        }
-                    },
-                    {
-                        "id": "36e3238c-173a-4efr7-7a1619dg56",
-                        "componentName": "Alarm",
-                        "healthEndpoint": "/health",
-                        "componentProtocol": "HTTP",
-                        "componentType": "ALARM",
-                        "componentAddress": {
-                            "id": 42,
-                            "privateAddress": "10.0.10.3",
-                            "publicAddress": "2.34.23.221"
-                        },
-                        "componentAvailability": {
-                            "id": 62,
-                            "availability": "ONLINE",
-                            "lastTimeOnline": 1669236289649
-                        }
-                    },
-                ]
-            };
-
-            setAllServices(mockResponse.registeredServices.filter(service =>
-                service.componentType === "ALARM" || service.componentType === "CAMERA"));
         });
 
         getCameras().then((response) => {
@@ -83,7 +39,6 @@ const SelectServices = (props) => {
         }).catch((error) => {
             console.log(error);
             // toast.error("Unable to get Cameras.");
-            // setUnavailableCameras(["36e25c8c-165a-445a-b062-9b7a16195dd6"]);
         });
 
         getAlarms().then((response) => {
@@ -91,7 +46,6 @@ const SelectServices = (props) => {
         }).catch((error) => {
             console.log(error);
             // toast.error("Unable to get Alarms.");
-            // setUnavailableAlarms(["36e3238c-173a-4efr7-7a1619dg56"]);
         });
     }, []);
 

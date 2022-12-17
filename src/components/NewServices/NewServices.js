@@ -27,7 +27,7 @@ const NewServices = () => {
                     setTimeout(() => { window.location.href = "/services"; }, 2000);
                 }).catch((error) => {
                     console.log(error);
-                    toast.error("Error creating camera.");
+                    toast.error("Unable to create Camera.");
                 });
             } else if (currentService.componentType === "ALARM") {
                 const alarm = {"id": currentService.id, "propertyName": currentProperty.name, "propertyAddress": currentProperty.address};
@@ -36,7 +36,7 @@ const NewServices = () => {
                     setTimeout(() => { window.location.href = "/services"; }, 2000);
                 }).catch((error) => {
                     console.log(error);
-                    toast.error("Error creating alarm.");
+                    toast.error("Unable to create Alarm.");
                 });
             }
         }

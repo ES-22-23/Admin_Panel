@@ -47,7 +47,7 @@ const PropertyCard = (props) => {
             }, 2000);
         }).catch((error) => {
             console.log(error);
-            toast.error("Error unregistering Alarm.");
+            toast.error("Unable to unregister Alarm.");
         });
     }
 
@@ -60,7 +60,7 @@ const PropertyCard = (props) => {
             }, 2000);
         }).catch((error) => {
             console.log(error);
-            toast.error("Error unregistering Camera.");
+            toast.error("Unable to unregister Camera.");
         });
     }
 

@@ -17,21 +17,17 @@ const Account = () => {
                         <h3 className="mb-4">Account</h3>
                         <Col className="my-2 col-6">
                             <h4>Full Name</h4>
-                            <h5 className="p-4  mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.name}</h5>
+                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.name || "---"}</h5>
                         </Col>
                         <Col className="my-2 col-6">
                             <h4>Username</h4>
-                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.preferred_username}</h5>
+                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.preferred_username || "---"}</h5>
                         </Col>
                         <Col className="my-2">
                             <h4>Email</h4>
-                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.email} <span style={{fontSize: "0.8rem", color: "#DC3545"}}>{keycloak.tokenParsed.email_verified ? "Verified" : "Not Verified"}</span>
+                            <h5 className="p-4 mt-4" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>{keycloak.tokenParsed.email || "---"} <span style={{fontSize: "0.8rem", color: "#DC3545"}}>{keycloak.tokenParsed.email_verified ? "Verified" : "Not Verified"}</span>
                             </h5>
                         </Col>
-                    </Row>
-                    <Row>
-                        <h6 className="mt-5">Application Client ID</h6>
-                        <p>{keycloak.clientId}</p>
                     </Row>
                 </Card>
             </Row>
