@@ -105,7 +105,8 @@ const Owners = () => {
         <Container className="text-center justify-content-center d-flex py-5" data-testid="Owners">
             <Row className="w-100">
                 {username === undefined &&
-                    <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/owners" addNewText="Owner"/>
+                    <SearchBar handleSearch={handleSearch.bind(this)} addNew="/new/owners" addNewText="Owner"
+                    placeholder="[Username, Name]"/>
                 }
 
                 {username !== undefined &&
