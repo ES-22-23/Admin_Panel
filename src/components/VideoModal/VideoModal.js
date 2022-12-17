@@ -23,7 +23,7 @@ const VideoModal = (props) => {
     useEffect(() => {
 
         if (intrusion) {
-            getVideoUrl(intrusion.videoKey).then((response) => {
+            getVideoUrl(intrusion.id).then((response) => {
                 setVideoUrl(response.data);
             }).catch((error) => {
                 // console.log(error);
