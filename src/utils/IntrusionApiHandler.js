@@ -26,8 +26,9 @@ async function getVideosFromCamera(cameraId) {
 }
 
 async function getVideoUrl(videoId) {
-    return await axios.get(apiAddress + "/intrusions/url", videoId, {
+    return await axios.get(apiAddress + "/intrusions/url", {
         headers: {'Authorization': 'Bearer ' + keycloak.token},
+        params: {eventId: videoId},
         timeout: 5000
     });
 }
