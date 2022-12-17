@@ -32,20 +32,7 @@ const Owners = () => {
         }).catch((error) => {
 
             console.log(error);
-            toast.error("Error fetching Owners.");
-
-            const mockOwners = [
-                {"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [
-                        {"id": 1, "name": "Property 1", "address": "Address1", "owner": "John",
-                            "cameras": [{"id": 1}, {"id": 2}], "alarms": [{"id": 1}, {"id": 2}, {"id": 3}]}
-                    ]},
-                {"username": "Luna", "name": "Luna Mary", "email": "luna@ua.pt", "properties": []},
-            ];
-
-            if (username !== undefined)
-                setAllOwners(mockOwners.filter(owner => owner.username.toLowerCase() === username.toLowerCase()));
-            else
-                setAllOwners(mockOwners);
+            toast.error("Unable to get Owners.");
         });
 
         getUsers().then((response) => {
@@ -53,7 +40,7 @@ const Owners = () => {
             setAllUsers(response.data);
         }).catch((error) => {
             console.log(error);
-            toast.error("Error fetching Users.");
+            toast.error("Unable to get Users.");
         });
 
     }, [username]);
@@ -78,7 +65,7 @@ const Owners = () => {
                 }, 2000);
             }).catch((error) => {
                 console.log(error);
-                toast.error("Error deleting owner " + currentOwner.username + ".");
+                toast.error("Unable to delete Owner " + currentOwner.username + ".");
             });
         }
         setCurrentOwner(null);

@@ -6,6 +6,7 @@ import PropertyCard from "../PropertyCard/PropertyCard";
 import SearchBar from "../SearchBar/SearchBar";
 import {getOwner, getProperty} from "../../utils/ApiHandler";
 import {useParams} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const OwnerProperties = () => {
 
@@ -20,7 +21,7 @@ const OwnerProperties = () => {
             setOwner(response.data);
         }).catch((error) => {
             console.log(error);
-            setOwner({"username": "John", "name": "John Smith", "email": "jsmith@ua.pt", "properties": [1]});
+            toast.error("Unable to get Owner.");
         });
     }, [username]);
 
@@ -35,14 +36,6 @@ const OwnerProperties = () => {
 
                 }).catch((error) => {
                     console.log(error);
-
-                    const mockProperty = {
-                        "id": 1, "name": "Property 1", "address": "Address 1", "owner": {"username": "John"},
-                        "cameras": ["a30c95b6-073b-4616-9b3d-f5c24304768c"], "alarms": ["b9823-073b-4616-9b3d-f5c2qwe4768c"]
-                    };
-
-                    if (!allProperties.includes(mockProperty))
-                        setAllProperties(allProperties => [...allProperties, mockProperty]);
                 });
             }
         }

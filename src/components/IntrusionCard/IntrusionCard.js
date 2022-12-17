@@ -20,7 +20,7 @@ const IntrusionCard = (props) => {
                 setVideoUrl(response.data);
             }).catch((error) => {
                 // console.log(error);
-                toast.error("Error fetching video.");
+                toast.error("Unable to get Video.");
             });
         }
 
