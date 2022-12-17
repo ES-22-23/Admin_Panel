@@ -53,6 +53,7 @@ const Notifications = () => {
     const updateIntrusions = () => {
         obtainIntrusions();
         setNIntrusions(4);
+        setDateText("");
         toast.info("Intrusions updated.");
     }
 
@@ -69,7 +70,7 @@ const Notifications = () => {
             setIntrusions(allIntrusions);
         } else {
             const date = new Date(dateText).toLocaleDateString();
-            setIntrusions(allIntrusions.filter((intrusion) => intrusion.intrusionDate.toLocaleDateString() === date));
+            setIntrusions(allIntrusions.filter((intrusion) => new Date(intrusion.timestamp).toLocaleDateString() === date));
         }
     }, [dateText]);
 
@@ -99,7 +100,7 @@ const Notifications = () => {
                     </Col>
                     <Col className="col-lg-4 col-8 mb-3 me-3">
                         <Form className="d-flex" autoComplete="off">
-                            <Form.Control className="text-white" type="date"
+                            <Form.Control className="text-white" type="date" value={dateText}
                                           style={{border: "none", backgroundColor: "rgba(0,0,0,0.80)"}}
                                           onChange={(e) => {setDateText(e.target.value); setNIntrusions(4);}}
                             />

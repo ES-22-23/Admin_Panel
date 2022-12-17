@@ -44,12 +44,7 @@ IntrusionNotification.propTypes = {
 };
 
 IntrusionNotification.defaultProps = {
-    intrusion: {
-        key: "",
-        propertyID: "",
-        cameraID: "",
-        intrusionDate: ""
-    },
+    intrusion: null,
 };
 
 export default IntrusionNotification;
