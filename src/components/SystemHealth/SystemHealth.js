@@ -114,7 +114,7 @@ const SystemHealth = () => {
                         <Card className="p-3 text-white shadow" style={{border: "none", borderRadius: "10px", backgroundColor: "rgba(0,0,0,0.60)", textAlign: "start"}}>
                             <Row>
                                 <Col>
-                                    <h6>Search by <br /><span style={{fontWeight: "bold"}}>Service</span></h6>
+                                    <h6>Search by <br /><span style={{fontWeight: "bold"}}>Name</span></h6>
                                 </Col>
                                 <Col>
                                     <Button className="w-100" variant="danger" onClick={handleSearch.bind(this)}>Search</Button>
