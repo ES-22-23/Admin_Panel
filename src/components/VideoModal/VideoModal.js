@@ -53,9 +53,8 @@ const VideoModal = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h6 className="mt-1 mx-2"><span style={{fontWeight: "bold"}}>Property ID:</span> {intrusion.propertyID}</h6>
-                <h6 className="mb-4 mx-2"><span style={{fontWeight: "bold"}}>Camera ID:</span> {intrusion.cameraID}</h6>
-                <h6 className="mb-4 mx-2"><span style={{fontWeight: "bold"}}>Video Url:</span> {videoUrl}</h6>
+                <h6 className="mt-1 mx-2"><span style={{fontWeight: "bold"}}>Property ID:</span> {intrusion.propertyId}</h6>
+                <h6 className="mb-4 mx-2"><span style={{fontWeight: "bold"}}>Camera ID:</span> {intrusion.cameraId}</h6>
                 {videoUrl &&
                     <Video autoPlay loop muted
                     controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']} >
