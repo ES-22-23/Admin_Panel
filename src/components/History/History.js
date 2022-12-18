@@ -15,7 +15,7 @@ const History = () => {
     useEffect(() => {
         getActions().then((response) => {
             if (response)
-                setAllHistory(response.data);
+                setAllHistory(response.data.sort((a, b) => new Date(b.date) - new Date(a.date)));
         }).catch((error) => {
             console.log(error);
             toast.error("Unable to get History.");
