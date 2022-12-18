@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './NewOwners.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Button, Card, Col, Form} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {createOwner} from "../../utils/ApiHandler";
-import {getUsers, registerUser} from "../../utils/KeycloakHandler";
+import {getUsers, registerUser, updateRole} from "../../utils/KeycloakHandler";
 
 const NewOwners = () => {
 
@@ -15,16 +15,7 @@ const NewOwners = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    // const [users, setUsers] = React.useState([]);
-
-    /*
-    useEffect(() => {
-        getUsers().then(response => {
-            setUsers(response.data);
-        });
-    }, []);
-
-    const obtainUserID = (username) => {
+    const obtainUserID = (users, username) => {
         let id = "";
         users.forEach(user => {
             console.log(user);
@@ -33,7 +24,7 @@ const NewOwners = () => {
             }
         });
         return id;
-    }*/
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,10 +46,19 @@ const NewOwners = () => {
                 if (response.status === 201) {
 
                     createOwner(owner).then(() => {
-                        toast.success("Owner created successfully.");
-                        setTimeout(() => {
-                            window.location.href = "/owners";
-                        }, 2000);
+
+                        getUsers().then(response => {
+
+                            const users = response.data;
+                            const id = obtainUserID(users, username);
+
+                            updateRole(id, "app-user").then(() => {
+                                toast.success("Owner created successfully.");
+                                setTimeout(() => {
+                                    window.location.href = "/owners";
+                                }, 2000);
+                            });
+                        });
 
                     }).catch((error) => {
                         console.log(error);
@@ -132,7 +132,7 @@ const NewOwners = () => {
                                               style={{backgroundColor: "rgba(0,0,0,0.60)", border: "none"}}
                                               onChange={(e) => setEmail(e.target.value)} autoComplete="off"/>
                             </Form.Group>
-                            <Form.Group className="mb-4" controlId="formUsername">
+                            <Form.Group className="mb-4" controlId="formPassword">
                                 <Form.Label><h4>Password</h4></Form.Label>
                                 <Form.Control size="lg" type="password" placeholder="Password" className="text-white"
                                               style={{backgroundColor: "rgba(0,0,0,0.60)", border: "none"}}
