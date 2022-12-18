@@ -52,10 +52,10 @@ function App() {
                 if (difference >= 0 && difference <= seconds) {
                     if (difference === 1) {
                         toast.warning("Intrusion detected 1 second ago " +
-                            "[Property " + intrusion.propertyID + "].");
+                            "[Property " + intrusion.propertyId + "].");
                     } else {
                         toast.warning("Intrusion detected " + difference + " seconds ago " +
-                            "[Property " + intrusion.propertyID + "].");
+                            "[Property " + intrusion.propertyId + "].");
                     }
                 }
             }

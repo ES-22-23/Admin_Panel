@@ -44,9 +44,9 @@ const Intrusions = () => {
         let filteredIntrusions = allIntrusions;
 
         if (cameraInput !== "")
-            filteredIntrusions = filteredIntrusions.filter(intrusion => intrusion.cameraID.toLowerCase().startsWith(cameraInput.toLowerCase()));
+            filteredIntrusions = filteredIntrusions.filter(intrusion => intrusion.cameraId.toLowerCase().startsWith(cameraInput.toLowerCase()));
         if (propertyInput !== "")
-            filteredIntrusions = filteredIntrusions.filter(intrusion => intrusion.propertyID.toString().startsWith(propertyInput.toLowerCase()));
+            filteredIntrusions = filteredIntrusions.filter(intrusion => intrusion.propertyId.toString().startsWith(propertyInput.toLowerCase()));
 
         if (cameraInput === "" && propertyInput === "") {
             setIntrusions(allIntrusions);

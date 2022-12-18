@@ -21,9 +21,9 @@ const IntrusionNotification = (props) => {
                     <Card className="p-4 mx-0 w-100" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>
                         <span className="m-0" style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Intrusion Detected</span>
                         <h6 className="mb-0"><span className="m-0" style={{fontSize: "80%"}}>
-                            Property ID:</span> {intrusion.propertyID}</h6>
+                            Property ID:</span> {intrusion.propertyId}</h6>
                         <h6 className="m-0"><span className="m-0" style={{fontSize: "80%"}}>
-                            Camera ID:</span> {intrusion.cameraID}</h6>
+                            Camera ID:</span> {intrusion.cameraId}</h6>
                     </Card>
                 </Col>
                 <Col className="my-2">
