@@ -22,4 +22,11 @@ async function deleteUser(userId) {
     });
 }
 
-export {getUsers, registerUser, deleteUser};
+async function updateRole(userId, role) {
+    return await axios.post(keycloakAddress + "/admin/realms/keycloak-react-auth/users/" + userId + "/role-mappings/realm",
+        { name: role },
+        { headers : { 'Authorization': 'bearer ' + keycloak.token } }
+    );
+}
+
+export {getUsers, registerUser, deleteUser, updateRole};
