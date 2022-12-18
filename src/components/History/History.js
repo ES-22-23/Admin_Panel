@@ -98,9 +98,9 @@ const History = () => {
                                 <Form.Select className="text-white" style={{backgroundColor: "rgba(0,0,0,0.80)", border: "none"}}
                                              onChange={(event) => setAction(event.target.value)}>
                                     <option value="All">All</option>
-                                    <option value="Created">Created</option>
-                                    <option value="Deleted">Deleted</option>
-                                    <option value="Updated">Updated</option>
+                                    <option value="Create">Created</option>
+                                    <option value="Delete">Deleted</option>
+                                    <option value="Update">Updated</option>
                                 </Form.Select>
                             </Form.Group>
                         </Card>
