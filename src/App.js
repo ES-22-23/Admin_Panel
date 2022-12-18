@@ -43,11 +43,11 @@ function App() {
 
             const responseIntrusions = response.data;
 
-            const timeInterval = new Date();
+            const currentTime = new Date();
             for (let idx in responseIntrusions) {
 
                 const intrusion = responseIntrusions[idx];
-                const difference = Math.floor((timeInterval.getTime() - intrusion.timestamp.getTime()) / 1000);
+                const difference = Math.floor((currentTime.getTime() - new Date(intrusion.timestamp).getTime()) / 1000);
 
                 if (difference >= 0 && difference <= seconds) {
                     if (difference === 1) {
