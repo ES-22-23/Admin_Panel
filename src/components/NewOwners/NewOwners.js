@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import {Button, Card, Col, Form} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {createOwner} from "../../utils/ApiHandler";
-import {getUsers, registerUser, updateRole} from "../../utils/KeycloakHandler";
+import {registerUser} from "../../utils/KeycloakHandler";
 
 const NewOwners = () => {
 
@@ -15,6 +15,7 @@ const NewOwners = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    /*
     const obtainUserID = (users, username) => {
         let id = "";
         users.forEach(user => {
@@ -25,6 +26,7 @@ const NewOwners = () => {
         });
         return id;
     }
+    */
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,7 +34,9 @@ const NewOwners = () => {
         const user = {"firstName": firstName, "lastName": lastName, "username": username, "email": email, "enabled": true,
             "credentials": [
                 {"type": "password", "value": password, "temporary": false}
-            ]};
+            ],
+            "realmRoles": ["app-user"]
+        };
 
         if (username === "" || firstName === "" || lastName === "" || password === "" || email === "") {
             toast.error("Please fill in all fields.");
@@ -46,19 +50,10 @@ const NewOwners = () => {
                 if (response.status === 201) {
 
                     createOwner(owner).then(() => {
-
-                        getUsers().then(response => {
-
-                            const users = response.data;
-                            const id = obtainUserID(users, username);
-
-                            updateRole(id, "app-user").then(() => {
-                                toast.success("Owner created successfully.");
-                                setTimeout(() => {
-                                    window.location.href = "/owners";
-                                }, 2000);
-                            });
-                        });
+                        toast.success("Owner created successfully.");
+                        setTimeout(() => {
+                            window.location.href = "/owners";
+                        }, 2000);
 
                     }).catch((error) => {
                         console.log(error);
