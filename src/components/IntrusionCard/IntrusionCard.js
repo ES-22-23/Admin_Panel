@@ -48,13 +48,13 @@ const IntrusionCard = (props) => {
                     <Card className="p-4 mx-0" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>
                         <span className="m-0" style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Property ID</span>
                         <h6 className="m-0"
-                            style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.propertyID}</h6>
+                            style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.propertyId}</h6>
                     </Card>
                 </Col>
                 <Col className="col-lg-3 col-6 my-2">
                     <Card className="p-4 mx-0" style={{borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.60)"}}>
                         <span className="m-0" style={{color: "rgb(255,196,0)", fontSize: "80%"}}>Camera ID</span>
-                        <h6 className="m-0" style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.cameraID}</h6>
+                        <h6 className="m-0" style={{lineHeight: "1.2em", minHeight: "2.4em"}}>{intrusion.cameraId}</h6>
                     </Card>
                 </Col>
                 <Col className="col-lg-3 col-6 my-2">
