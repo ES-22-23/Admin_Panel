@@ -1,0 +1,7 @@
+#autocomplete {
+    cursor: pointer;
+}
+
+#autocomplete:hover {
+    color: #DC3545;
+}

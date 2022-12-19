@@ -1,0 +1,10 @@
+.SelectServices {}
+
+.scrollable {
+    overflow-y: scroll;
+    max-height: 22vh;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 0;
+}
