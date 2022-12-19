@@ -16,13 +16,4 @@ describe('<DeleteModal />', () => {
 
         expect(deleteModal).toBeInTheDocument();
     });
-
-    test('it should display property ID', () => {
-        render(<DeleteModal property={property}/>);
-
-        const propertyId = screen.getByTestId('PropertyID');
-
-        expect(propertyId).toBeInTheDocument();
-        expect(propertyId).toHaveTextContent(property.id);
-    });
 });
